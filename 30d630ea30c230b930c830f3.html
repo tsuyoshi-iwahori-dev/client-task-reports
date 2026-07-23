@@ -4,43 +4,84 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ブリヂストン — タスクレポート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+:root{--navy-deep:#0F2A4A;--navy-mid:#1E3F63;--slate:#52708C;--paper:#F6F8FA;--card:#FFFFFF;--amber:#E8A33D;--amber-soft:#FCEFD9;--danger:#D64550;--danger-soft:#FBE7E8;--success:#3E9B6F;--success-soft:#E4F3EC;--border:#E2E8EF}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Helvetica Neue',Arial,'Hiragino Sans','Yu Gothic',sans-serif;background:#f4f6fb;color:#222;font-size:14px;line-height:1.6}
-a{color:#1F3864}
-header{background:#1F3864;color:#fff;padding:22px 36px}
-header h1{font-size:24px;font-weight:700;letter-spacing:.02em}
-.meta{font-size:12px;opacity:.7;margin-top:4px}
-main{max-width:920px;margin:24px auto;padding:0 16px;display:flex;flex-direction:column;gap:20px}
-.card{background:#fff;border-radius:10px;box-shadow:0 2px 14px rgba(0,0,0,.08);padding:22px 26px}
-.card h2{font-size:15px;font-weight:700;color:#1F3864;margin-bottom:14px;padding-bottom:9px;border-bottom:2px solid #e8ecf4}
-.kv{display:grid;grid-template-columns:110px 1fr;gap:7px 14px;font-size:13px}
-.kl{color:#888;font-weight:600}
-.kv-val{white-space:pre-wrap;color:#333}
-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
-th{text-align:left;padding:8px 10px;color:#666;font-size:12px;font-weight:600;border-bottom:2px solid #e5e7eb;white-space:nowrap}
-td{padding:8px 10px;border-bottom:1px solid #f0f1f4;vertical-align:top}
-tr:hover td{background:#f9fafb}
-.done td{opacity:.5;text-decoration:line-through}
-.done .badge{text-decoration:none;opacity:1}
-.ac{max-width:320px;word-break:break-all}
-.badge{display:inline-block;padding:2px 7px;border-radius:3px;font-size:11px;font-weight:700;margin-right:3px;white-space:nowrap}
-.b-action{background:#dce8ff;color:#1D4E8A}
-.b-meet{background:#fff3cd;color:#664d03}
-.b-nc{background:#fff0e0;color:#b36000}
-.overdue{color:#dc3545;font-weight:700}
-.muted{color:#aaa}
-.empty{text-align:center;padding:28px;color:#bbb;font-size:13px}
-.chip{display:inline-block;background:#e8ecf4;color:#1F3864;border-radius:12px;padding:2px 10px;font-size:12px;font-weight:700;margin-left:8px}
-.done-hd{font-size:12px;color:#aaa;font-weight:600;margin:18px 0 8px}
-svg{display:block;overflow:visible}
-footer{text-align:center;padding:28px;font-size:11px;color:#ccc}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--paper);color:var(--navy-deep);font-size:14px;line-height:1.6}
+a{color:var(--navy-mid)}
+header{background:var(--navy-deep);color:#fff;padding:20px 32px}
+.hd-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:20px}
+.hd-text{flex:1;min-width:0}
+.hd-name{font-family:'Zen Kaku Gothic New',sans-serif;font-size:26px;font-weight:900;letter-spacing:.02em;line-height:1.2}
+.hd-date{font-size:11px;color:rgba(255,255,255,.55);margin-top:4px}
+.hd-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.hd-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 12px;border-radius:20px;font-size:12px;font-weight:700;white-space:nowrap}
+.hdb-open{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.hdb-nc{background:var(--amber-soft);color:#7A5200}
+.hdb-over{background:var(--danger-soft);color:var(--danger)}
+main{max-width:960px;margin:24px auto;padding:0 16px;display:flex;flex-direction:column;gap:20px}
+.card{background:var(--card);border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.07),0 4px 16px rgba(0,0,0,.05);padding:22px 24px}
+.card-title{font-family:'Zen Kaku Gothic New',sans-serif;font-size:13px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.sc-row{display:flex;gap:12px;flex-wrap:wrap}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;min-width:120px;flex:1}
+.sc-label{font-size:11px;color:var(--slate);font-weight:700;letter-spacing:.04em;margin-bottom:6px}
+.sc-value{font-size:13px;color:var(--navy-deep);font-weight:500;white-space:pre-wrap;line-height:1.4;font-variant-numeric:tabular-nums}
+.sc-accent{font-family:'Zen Kaku Gothic New',sans-serif;font-size:17px;font-weight:700}
+svg.chart{display:block;overflow:visible;width:100%;height:auto}
+.perf-legend{display:flex;gap:16px;margin-bottom:10px;font-size:12px;color:var(--slate)}
+.leg{display:flex;align-items:center;gap:5px}
+.leg-bar{width:14px;height:10px;background:var(--navy-mid);border-radius:2px;opacity:.85}
+.leg-dot{width:10px;height:10px;background:var(--amber);border-radius:50%;border:1.5px solid #fff;box-shadow:0 0 0 1px var(--amber)}
+table.pt{width:100%;border-collapse:collapse;font-size:13px;margin-top:14px}
+table.pt th{text-align:left;padding:7px 10px;color:var(--slate);font-size:11px;font-weight:700;letter-spacing:.04em;border-bottom:2px solid var(--border)}
+table.pt td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--navy-deep)}
+table.pt td.num{font-variant-numeric:tabular-nums;text-align:right;font-weight:500}
+table.pt td.amber{color:var(--amber);font-weight:700}
+.task-list{display:flex;flex-direction:column;gap:10px}
+.task-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.task-card.task-overdue{border-color:var(--danger);border-left-width:4px;background:#fffcfc}
+.task-card.task-nc{border-color:var(--amber);border-left-width:4px;background:#fffdf8}
+.task-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.task-badges{display:flex;gap:5px;flex-wrap:wrap}
+.tbadge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap}
+.t-action{background:#DDE8FF;color:#1D4080}
+.t-meet{background:#FFF3CD;color:#7A5200}
+.t-nc{background:var(--amber-soft);color:#7A5200}
+.task-due{font-size:12px;font-weight:700;white-space:nowrap;flex-shrink:0}
+.due-over{display:inline-flex;align-items:center;gap:5px;background:var(--danger-soft);color:var(--danger);padding:2px 10px;border-radius:4px}
+.due-soon{display:inline-flex;align-items:center;gap:5px;background:var(--amber-soft);color:#7A5200;padding:2px 10px;border-radius:4px}
+.due-ok{display:inline-flex;align-items:center;gap:5px;background:var(--success-soft);color:#2A7A56;padding:2px 10px;border-radius:4px}
+.due-none{display:inline-block;background:#F0F3F7;color:var(--slate);padding:2px 10px;border-radius:4px;font-size:12px}
+.due-delta{font-size:10px;opacity:.8}
+.task-action{font-size:14px;font-weight:500;color:var(--navy-deep);line-height:1.5;word-break:break-all}
+.task-meta{font-size:11px;color:var(--slate);margin-top:5px}
+.empty-tasks{text-align:center;padding:36px;color:var(--slate);font-size:13px;border:2px dashed var(--border);border-radius:10px}
+footer{text-align:center;padding:32px;font-size:11px;color:var(--slate)}
+@media(max-width:600px){.hd-inner{flex-direction:column;align-items:flex-start}.sc-row{flex-direction:column}.sc{min-width:unset;flex:unset;width:100%}.task-top{flex-direction:column}}
 </style>
 </head>
 <body>
 <header>
-  <h1>ブリヂストン</h1>
-  <div class="meta">タスクレポート &nbsp;|&nbsp; 最終更新: 2026-07-23 &nbsp;|&nbsp; 未完了 3件 / 完了 2件</div>
+  <div class="hd-inner">
+    <div class="hd-text">
+      <div class="hd-name">ブリヂストン</div>
+      <div class="hd-date">最終更新: 2026-07-23</div>
+      <div class="hd-badges">
+        <span class="hd-badge hdb-open">未完了 3件</span>
+        <span class="hd-badge hdb-nc">⚠ 要確認 3件</span>
+        
+      </div>
+    </div>
+    <svg width="76" height="76" viewBox="0 0 76 76" aria-label="タスク内訳">
+  <circle cx="38" cy="38" r="27" fill="none" stroke="#2a4a6a" stroke-width="9" opacity="0.3"/>
+  <circle cx="38" cy="38" r="27" fill="none" stroke="#E8A33D" stroke-width="9" stroke-dasharray="169.65 0.00" stroke-dashoffset="0.00" transform="rotate(-90 38 38)"/>
+  <text x="38" y="34" text-anchor="middle" font-size="15" font-weight="700" fill="white" font-family="sans-serif">3</text>
+  <text x="38" y="49" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.65)" font-family="sans-serif">未完了</text>
+</svg>
+  </div>
 </header>
 <main>
 
@@ -49,47 +90,29 @@ footer{text-align:center;padding:28px;font-size:11px;color:#ccc}
 
 
 <div class="card">
-  <h2>✅ 未完了タスク<span class="chip">3件</span></h2>
-  <table>
-        <thead><tr><th>種別</th><th>議事録日</th><th>アクション内容</th><th>担当</th><th>期限</th></tr></thead>
-        <tbody><tr>
-      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
-      <td>2026-06-30</td>
-      <td class="ac">国内・海外ブランドリストの仮調査を実施し、適切な調査スコープ（必要サブブランド数）を見極める</td>
-      <td>中原・行平（GMOテック）</td>
-      <td><span class="muted">7月前半</span></td>
-    </tr><tr>
-      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
-      <td>2026-06-30</td>
-      <td class="ac">調査方針の言語化（何をどう調査するかの設計・方向性の明文化）</td>
-      <td>GMOテック</td>
-      <td><span class="muted">7月中</span></td>
-    </tr><tr>
-      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
-      <td>2026-06-30</td>
-      <td class="ac">仮調査結果を踏まえ、スコープ増加に伴う追加費用の要否をブリヂストンに提案・合意形成</td>
-      <td>高峰（GMOテック）</td>
-      <td><span class="muted">7月前半〜後半</span></td>
-    </tr></tbody>
-       </table>
-  
-  <div class="done-hd">完了済み（2件）</div>
-  <table>
-    <thead><tr><th>種別</th><th>議事録日</th><th>アクション内容</th><th>担当</th><th>期限</th></tr></thead>
-    <tbody><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-30</td>
-      <td class="ac">サーチコンソール・GA4のアカウント共有について社内関連部門（オンラインストア担当等）に確認・依頼し、共有可否をGMOテックに連絡</td>
-      <td>内田・新倉（ブリヂストン）</td>
-      <td>次回MTGまで</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-30</td>
-      <td class="ac">次回ミーティングの日程調整・設定</td>
-      <td>GMOテック（岩堀）</td>
-      <td>2026-07-21</td>
-    </tr></tbody>
-  </table>
+  <div class="card-title">未完了タスク（3件）</div>
+  <div class="task-list"><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-none">7月前半</span></div>
+  </div>
+  <div class="task-action">国内・海外ブランドリストの仮調査を実施し、適切な調査スコープ（必要サブブランド数）を見極める</div>
+  <div class="task-meta">👤 中原・行平（GMOテック）　📅 2026-06-30</div>
+</div><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-none">7月中</span></div>
+  </div>
+  <div class="task-action">調査方針の言語化（何をどう調査するかの設計・方向性の明文化）</div>
+  <div class="task-meta">👤 GMOテック　📅 2026-06-30</div>
+</div><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-none">7月前半〜後半</span></div>
+  </div>
+  <div class="task-action">仮調査結果を踏まえ、スコープ増加に伴う追加費用の要否をブリヂストンに提案・合意形成</div>
+  <div class="task-meta">👤 高峰（GMOテック）　📅 2026-06-30</div>
+</div></div>
 </div>
 
 </main>
