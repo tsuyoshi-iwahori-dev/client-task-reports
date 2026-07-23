@@ -4,43 +4,84 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>トライ・インターナショナル — タスクレポート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+:root{--navy-deep:#0F2A4A;--navy-mid:#1E3F63;--slate:#52708C;--paper:#F6F8FA;--card:#FFFFFF;--amber:#E8A33D;--amber-soft:#FCEFD9;--danger:#D64550;--danger-soft:#FBE7E8;--success:#3E9B6F;--success-soft:#E4F3EC;--border:#E2E8EF}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Helvetica Neue',Arial,'Hiragino Sans','Yu Gothic',sans-serif;background:#f4f6fb;color:#222;font-size:14px;line-height:1.6}
-a{color:#1F3864}
-header{background:#1F3864;color:#fff;padding:22px 36px}
-header h1{font-size:24px;font-weight:700;letter-spacing:.02em}
-.meta{font-size:12px;opacity:.7;margin-top:4px}
-main{max-width:920px;margin:24px auto;padding:0 16px;display:flex;flex-direction:column;gap:20px}
-.card{background:#fff;border-radius:10px;box-shadow:0 2px 14px rgba(0,0,0,.08);padding:22px 26px}
-.card h2{font-size:15px;font-weight:700;color:#1F3864;margin-bottom:14px;padding-bottom:9px;border-bottom:2px solid #e8ecf4}
-.kv{display:grid;grid-template-columns:110px 1fr;gap:7px 14px;font-size:13px}
-.kl{color:#888;font-weight:600}
-.kv-val{white-space:pre-wrap;color:#333}
-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
-th{text-align:left;padding:8px 10px;color:#666;font-size:12px;font-weight:600;border-bottom:2px solid #e5e7eb;white-space:nowrap}
-td{padding:8px 10px;border-bottom:1px solid #f0f1f4;vertical-align:top}
-tr:hover td{background:#f9fafb}
-.done td{opacity:.5;text-decoration:line-through}
-.done .badge{text-decoration:none;opacity:1}
-.ac{max-width:320px;word-break:break-all}
-.badge{display:inline-block;padding:2px 7px;border-radius:3px;font-size:11px;font-weight:700;margin-right:3px;white-space:nowrap}
-.b-action{background:#dce8ff;color:#1D4E8A}
-.b-meet{background:#fff3cd;color:#664d03}
-.b-nc{background:#fff0e0;color:#b36000}
-.overdue{color:#dc3545;font-weight:700}
-.muted{color:#aaa}
-.empty{text-align:center;padding:28px;color:#bbb;font-size:13px}
-.chip{display:inline-block;background:#e8ecf4;color:#1F3864;border-radius:12px;padding:2px 10px;font-size:12px;font-weight:700;margin-left:8px}
-.done-hd{font-size:12px;color:#aaa;font-weight:600;margin:18px 0 8px}
-svg{display:block;overflow:visible}
-footer{text-align:center;padding:28px;font-size:11px;color:#ccc}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--paper);color:var(--navy-deep);font-size:14px;line-height:1.6}
+a{color:var(--navy-mid)}
+header{background:var(--navy-deep);color:#fff;padding:20px 32px}
+.hd-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:20px}
+.hd-text{flex:1;min-width:0}
+.hd-name{font-family:'Zen Kaku Gothic New',sans-serif;font-size:26px;font-weight:900;letter-spacing:.02em;line-height:1.2}
+.hd-date{font-size:11px;color:rgba(255,255,255,.55);margin-top:4px}
+.hd-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.hd-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 12px;border-radius:20px;font-size:12px;font-weight:700;white-space:nowrap}
+.hdb-open{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.hdb-nc{background:var(--amber-soft);color:#7A5200}
+.hdb-over{background:var(--danger-soft);color:var(--danger)}
+main{max-width:960px;margin:24px auto;padding:0 16px;display:flex;flex-direction:column;gap:20px}
+.card{background:var(--card);border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.07),0 4px 16px rgba(0,0,0,.05);padding:22px 24px}
+.card-title{font-family:'Zen Kaku Gothic New',sans-serif;font-size:13px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.sc-row{display:flex;gap:12px;flex-wrap:wrap}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;min-width:120px;flex:1}
+.sc-label{font-size:11px;color:var(--slate);font-weight:700;letter-spacing:.04em;margin-bottom:6px}
+.sc-value{font-size:13px;color:var(--navy-deep);font-weight:500;white-space:pre-wrap;line-height:1.4;font-variant-numeric:tabular-nums}
+.sc-accent{font-family:'Zen Kaku Gothic New',sans-serif;font-size:17px;font-weight:700}
+svg.chart{display:block;overflow:visible;width:100%;height:auto}
+.perf-legend{display:flex;gap:16px;margin-bottom:10px;font-size:12px;color:var(--slate)}
+.leg{display:flex;align-items:center;gap:5px}
+.leg-bar{width:14px;height:10px;background:var(--navy-mid);border-radius:2px;opacity:.85}
+.leg-dot{width:10px;height:10px;background:var(--amber);border-radius:50%;border:1.5px solid #fff;box-shadow:0 0 0 1px var(--amber)}
+table.pt{width:100%;border-collapse:collapse;font-size:13px;margin-top:14px}
+table.pt th{text-align:left;padding:7px 10px;color:var(--slate);font-size:11px;font-weight:700;letter-spacing:.04em;border-bottom:2px solid var(--border)}
+table.pt td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--navy-deep)}
+table.pt td.num{font-variant-numeric:tabular-nums;text-align:right;font-weight:500}
+table.pt td.amber{color:var(--amber);font-weight:700}
+.task-list{display:flex;flex-direction:column;gap:10px}
+.task-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.task-card.task-overdue{border-color:var(--danger);border-left-width:4px;background:#fffcfc}
+.task-card.task-nc{border-color:var(--amber);border-left-width:4px;background:#fffdf8}
+.task-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.task-badges{display:flex;gap:5px;flex-wrap:wrap}
+.tbadge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap}
+.t-action{background:#DDE8FF;color:#1D4080}
+.t-meet{background:#FFF3CD;color:#7A5200}
+.t-nc{background:var(--amber-soft);color:#7A5200}
+.task-due{font-size:12px;font-weight:700;white-space:nowrap;flex-shrink:0}
+.due-over{display:inline-flex;align-items:center;gap:5px;background:var(--danger-soft);color:var(--danger);padding:2px 10px;border-radius:4px}
+.due-soon{display:inline-flex;align-items:center;gap:5px;background:var(--amber-soft);color:#7A5200;padding:2px 10px;border-radius:4px}
+.due-ok{display:inline-flex;align-items:center;gap:5px;background:var(--success-soft);color:#2A7A56;padding:2px 10px;border-radius:4px}
+.due-none{display:inline-block;background:#F0F3F7;color:var(--slate);padding:2px 10px;border-radius:4px;font-size:12px}
+.due-delta{font-size:10px;opacity:.8}
+.task-action{font-size:14px;font-weight:500;color:var(--navy-deep);line-height:1.5;word-break:break-all}
+.task-meta{font-size:11px;color:var(--slate);margin-top:5px}
+.empty-tasks{text-align:center;padding:36px;color:var(--slate);font-size:13px;border:2px dashed var(--border);border-radius:10px}
+footer{text-align:center;padding:32px;font-size:11px;color:var(--slate)}
+@media(max-width:600px){.hd-inner{flex-direction:column;align-items:flex-start}.sc-row{flex-direction:column}.sc{min-width:unset;flex:unset;width:100%}.task-top{flex-direction:column}}
 </style>
 </head>
 <body>
 <header>
-  <h1>トライ・インターナショナル</h1>
-  <div class="meta">タスクレポート &nbsp;|&nbsp; 最終更新: 2026-07-23 &nbsp;|&nbsp; 未完了 6件 / 完了 23件</div>
+  <div class="hd-inner">
+    <div class="hd-text">
+      <div class="hd-name">トライ・インターナショナル</div>
+      <div class="hd-date">最終更新: 2026-07-23</div>
+      <div class="hd-badges">
+        <span class="hd-badge hdb-open">未完了 6件</span>
+        <span class="hd-badge hdb-nc">⚠ 要確認 4件</span>
+        <span class="hd-badge hdb-over">🔴 期限超過 1件</span>
+      </div>
+    </div>
+    <svg width="76" height="76" viewBox="0 0 76 76" aria-label="タスク内訳">
+  <circle cx="38" cy="38" r="27" fill="none" stroke="#2a4a6a" stroke-width="9" opacity="0.3"/>
+  <circle cx="38" cy="38" r="27" fill="none" stroke="#D64550" stroke-width="9" stroke-dasharray="28.27 141.37" stroke-dashoffset="0.00" transform="rotate(-90 38 38)"/><circle cx="38" cy="38" r="27" fill="none" stroke="#E8A33D" stroke-width="9" stroke-dasharray="113.10 56.55" stroke-dashoffset="-28.27" transform="rotate(-90 38 38)"/><circle cx="38" cy="38" r="27" fill="none" stroke="#3E9B6F" stroke-width="9" stroke-dasharray="28.27 141.37" stroke-dashoffset="-141.37" transform="rotate(-90 38 38)"/>
+  <text x="38" y="34" text-anchor="middle" font-size="15" font-weight="700" fill="white" font-family="sans-serif">6</text>
+  <text x="38" y="49" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.65)" font-family="sans-serif">未完了</text>
+</svg>
+  </div>
 </header>
 <main>
 
@@ -49,191 +90,50 @@ footer{text-align:center;padding:28px;font-size:11px;color:#ccc}
 
 
 <div class="card">
-  <h2>✅ 未完了タスク<span class="chip">6件</span></h2>
-  <table>
-        <thead><tr><th>種別</th><th>議事録日</th><th>アクション内容</th><th>担当</th><th>期限</th></tr></thead>
-        <tbody><tr>
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-07-17</td>
-      <td class="ac">コラム初稿（タイトル微調整後）を貴社へ共有</td>
-      <td>仲田</td>
-      <td><span class="overdue">2026-07-17 ⚠</span></td>
-    </tr><tr>
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-07-17</td>
-      <td class="ac">資料をパワーポイント形式で定例会前に事前共有する運用を徹底（次回から定例会日程確定時に提出日も決定）</td>
-      <td>仲田・岩堀</td>
-      <td><span class="">2026-08-10</span></td>
-    </tr><tr>
-      <td><span class="badge b-meet">定例会</span><span class="badge b-nc">要確認</span></td>
-      <td>2026-07-17</td>
-      <td class="ac">次回定例会（● 次回定例会：2026年8月10日（月）11時〜（Zoom））</td>
-      <td></td>
-      <td><span class="">2026-08-10</span></td>
-    </tr><tr>
-      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
-      <td>2026-07-17</td>
-      <td class="ac">店舗メニューのローデータ（Excel等）を提供可能か社内確認し、Slackで返答</td>
-      <td>清水様</td>
-      <td><span class="muted">早急に</span></td>
-    </tr><tr>
-      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
-      <td>2026-07-17</td>
-      <td class="ac">ファンコミュニティ（みそラーメン日和）との連携について中村様にコンタクト（清水様Ccで）、必要に応じて対面MTGをセッティング</td>
-      <td>岩堀</td>
-      <td><span class="muted">早急に</span></td>
-    </tr><tr>
-      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
-      <td>2026-07-17</td>
-      <td class="ac">サンリオコラボの特集ページ企画・準備を開始（10月1日情報解禁に合わせた受け皿づくり）</td>
-      <td>仲田・岩堀</td>
-      <td><span class="muted">2026年08月末</span></td>
-    </tr></tbody>
-       </table>
-  
-  <div class="done-hd">完了済み（23件）</div>
-  <table>
-    <thead><tr><th>種別</th><th>議事録日</th><th>アクション内容</th><th>担当</th><th>期限</th></tr></thead>
-    <tbody><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-19</td>
-      <td class="ac">GAのデータ保持期間を現状の2ヶ月から最長14ヶ月に変更する</td>
-      <td>ナカタ MEOチーム担当（guest06）</td>
-      <td>早急に</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-19</td>
-      <td class="ac">GAおよびサーチコンソールで取得可能なデータ項目のリストを箇条書きにまとめ清水様に共有する</td>
-      <td>ナカタ MEOチーム担当（guest06）</td>
-      <td>次回定例まで</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-19</td>
-      <td class="ac">地点別順位データ（99地点）のエクセル資料を清水様に送付する</td>
-      <td>ナカタ SEOチーム（guest02）</td>
-      <td>早急に</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-19</td>
-      <td class="ac">コラム制作・デザインの相談のため中村様（Slackチャンネル）に連絡を取る</td>
-      <td>岩張さん（guest01）</td>
-      <td>早急に</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-19</td>
-      <td class="ac">コラムキーワードの精査・優先順位付けを行い、制作コンテンツ内容を確定させる</td>
-      <td>ナカタ SEOチーム（guest02）</td>
-      <td>7月定例まで</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-19</td>
-      <td class="ac">ニュース配下への読み物カテゴリ追加・コラム公開の実装可否を制作会社と調整する</td>
-      <td>清水様（トライ・インターナショナル）</td>
-      <td>次回定例まで</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-19</td>
-      <td class="ac">店舗メニューの仕入れデータが社内で取得可能か確認する</td>
-      <td>清水様（トライ・インターナショナル）</td>
-      <td>次回定例まで</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-19</td>
-      <td class="ac">現行サイトの構造化データ不足による問題（AI誤認識・営業時間書き換え）の対応策を検討する</td>
-      <td>ナカタ SEOチーム（guest02）</td>
-      <td>次回定例まで</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-19</td>
-      <td class="ac">6月分の月次レポート資料を作成し清水様に送付する</td>
-      <td>ナカタ SEOチーム（guest02・岩張さん）</td>
-      <td>2026-07-13</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-19</td>
-      <td class="ac">7月定例会の日程候補日を清水様に送付する</td>
-      <td>岩張さん（guest01）</td>
-      <td>早急に</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-07-17</td>
-      <td class="ac">次回定例会（8月10日11時）のZoom URLを送付</td>
-      <td>岩堀</td>
-      <td>2026-07-17</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-07-17</td>
-      <td class="ac">5月のPマックス広告の結果データをSlackで共有</td>
-      <td>清水様</td>
-      <td>早急に</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-07-17</td>
-      <td class="ac">CMSで編集可能な範囲のキャプチャを支援会社へ共有（直営店舗ページのテキスト追加施策のため）</td>
-      <td>清水様</td>
-      <td>早急に</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-07-17</td>
-      <td class="ac">グーグルマップ広告（スマートアシストキャンペーン）の代理運用について社内調整し返答</td>
-      <td>GMO TECH</td>
-      <td>早急に</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-05-26</td>
-      <td class="ac">リニューアル要件資料（ワイヤーフレーム等）をSlackで送付</td>
-      <td>清水（ヒューマンワーク）</td>
-      <td>2026-05-29</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-05-26</td>
-      <td class="ac">クーミル代表への紹介メール送付（行平への連絡紹介）</td>
-      <td>清水（ヒューマンワーク）</td>
-      <td>近日中</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-05-26</td>
-      <td class="ac">Google Analytics・Search ConsoleのアナリストまたはフルユーザーをGMOテックと共有</td>
-      <td>清水（ヒューマンワーク）</td>
-      <td>近日中</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-05-26</td>
-      <td class="ac">クーミル代表へのお問い合わせ・情報共有連絡（清水様からの紹介メール受領後）</td>
-      <td>行平（GMOテック）</td>
-      <td>清水様の紹介メール受領後 速やかに</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-05-26</td>
-      <td class="ac">Slackチャンネル新設（社内チャンネル含む）・関係者追加</td>
-      <td>岩堀（GMOテック）</td>
-      <td>近日中</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-05-26</td>
-      <td class="ac">リニューアル要件確認ミーティングの日程調整（6月20日または28日頃で1時間確保）</td>
-      <td>岩堀（GMOテック）</td>
-      <td>近日中</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-05-26</td>
-      <td class="ac">定例会スケジュール確保（翌月から3ヶ月分、毎月第3週で調整）</td>
-      <td>岩堀（GMOテック）</td>
-      <td>近日中</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-05-26</td>
-      <td class="ac">キックオフのお礼連絡・資料送付</td>
-      <td>高峰（GMOテック）</td>
-      <td>近日中</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-05-26</td>
-      <td class="ac">5月以前のMEO指標データ（表示回数・アクション数等）を整理してクライアントへ提供</td>
-      <td>GMOテック（MEOチーム・渡部と連携）</td>
-      <td>6月第3週（15日週）目標で調整</td>
-    </tr></tbody>
-  </table>
+  <div class="card-title">未完了タスク（6件）</div>
+  <div class="task-list"><div class="task-card task-overdue">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span></div>
+    <div class="task-due"><span class="due-over">2026-07-17<span class="due-delta">+6日</span></span></div>
+  </div>
+  <div class="task-action">コラム初稿（タイトル微調整後）を貴社へ共有</div>
+  <div class="task-meta">👤 仲田　📅 2026-07-17</div>
+</div><div class="task-card">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span></div>
+    <div class="task-due"><span class="due-ok">2026-08-10</span></div>
+  </div>
+  <div class="task-action">資料をパワーポイント形式で定例会前に事前共有する運用を徹底（次回から定例会日程確定時に提出日も決定）</div>
+  <div class="task-meta">👤 仲田・岩堀　📅 2026-07-17</div>
+</div><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-meet">定例会</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-ok">2026-08-10</span></div>
+  </div>
+  <div class="task-action">次回定例会（● 次回定例会：2026年8月10日（月）11時〜（Zoom））</div>
+  <div class="task-meta">📅 2026-07-17</div>
+</div><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-none">早急に</span></div>
+  </div>
+  <div class="task-action">店舗メニューのローデータ（Excel等）を提供可能か社内確認し、Slackで返答</div>
+  <div class="task-meta">👤 清水様　📅 2026-07-17</div>
+</div><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-none">早急に</span></div>
+  </div>
+  <div class="task-action">ファンコミュニティ（みそラーメン日和）との連携について中村様にコンタクト（清水様Ccで）、必要に応じて対面MTGをセッティング</div>
+  <div class="task-meta">👤 岩堀　📅 2026-07-17</div>
+</div><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-none">2026年08月末</span></div>
+  </div>
+  <div class="task-action">サンリオコラボの特集ページ企画・準備を開始（10月1日情報解禁に合わせた受け皿づくり）</div>
+  <div class="task-meta">👤 仲田・岩堀　📅 2026-07-17</div>
+</div></div>
 </div>
 
 </main>
