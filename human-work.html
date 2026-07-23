@@ -4,312 +4,194 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ヒューマンワーク — タスクレポート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+:root{--navy-deep:#0F2A4A;--navy-mid:#1E3F63;--slate:#52708C;--paper:#F6F8FA;--card:#FFFFFF;--amber:#E8A33D;--amber-soft:#FCEFD9;--danger:#D64550;--danger-soft:#FBE7E8;--success:#3E9B6F;--success-soft:#E4F3EC;--border:#E2E8EF}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Helvetica Neue',Arial,'Hiragino Sans','Yu Gothic',sans-serif;background:#f4f6fb;color:#222;font-size:14px;line-height:1.6}
-a{color:#1F3864}
-header{background:#1F3864;color:#fff;padding:22px 36px}
-header h1{font-size:24px;font-weight:700;letter-spacing:.02em}
-.meta{font-size:12px;opacity:.7;margin-top:4px}
-main{max-width:920px;margin:24px auto;padding:0 16px;display:flex;flex-direction:column;gap:20px}
-.card{background:#fff;border-radius:10px;box-shadow:0 2px 14px rgba(0,0,0,.08);padding:22px 26px}
-.card h2{font-size:15px;font-weight:700;color:#1F3864;margin-bottom:14px;padding-bottom:9px;border-bottom:2px solid #e8ecf4}
-.kv{display:grid;grid-template-columns:110px 1fr;gap:7px 14px;font-size:13px}
-.kl{color:#888;font-weight:600}
-.kv-val{white-space:pre-wrap;color:#333}
-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
-th{text-align:left;padding:8px 10px;color:#666;font-size:12px;font-weight:600;border-bottom:2px solid #e5e7eb;white-space:nowrap}
-td{padding:8px 10px;border-bottom:1px solid #f0f1f4;vertical-align:top}
-tr:hover td{background:#f9fafb}
-.done td{opacity:.5;text-decoration:line-through}
-.done .badge{text-decoration:none;opacity:1}
-.ac{max-width:320px;word-break:break-all}
-.badge{display:inline-block;padding:2px 7px;border-radius:3px;font-size:11px;font-weight:700;margin-right:3px;white-space:nowrap}
-.b-action{background:#dce8ff;color:#1D4E8A}
-.b-meet{background:#fff3cd;color:#664d03}
-.b-nc{background:#fff0e0;color:#b36000}
-.overdue{color:#dc3545;font-weight:700}
-.muted{color:#aaa}
-.empty{text-align:center;padding:28px;color:#bbb;font-size:13px}
-.chip{display:inline-block;background:#e8ecf4;color:#1F3864;border-radius:12px;padding:2px 10px;font-size:12px;font-weight:700;margin-left:8px}
-.done-hd{font-size:12px;color:#aaa;font-weight:600;margin:18px 0 8px}
-svg{display:block;overflow:visible}
-footer{text-align:center;padding:28px;font-size:11px;color:#ccc}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--paper);color:var(--navy-deep);font-size:14px;line-height:1.6}
+a{color:var(--navy-mid)}
+header{background:var(--navy-deep);color:#fff;padding:20px 32px}
+.hd-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:20px}
+.hd-text{flex:1;min-width:0}
+.hd-name{font-family:'Zen Kaku Gothic New',sans-serif;font-size:26px;font-weight:900;letter-spacing:.02em;line-height:1.2}
+.hd-date{font-size:11px;color:rgba(255,255,255,.55);margin-top:4px}
+.hd-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.hd-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 12px;border-radius:20px;font-size:12px;font-weight:700;white-space:nowrap}
+.hdb-open{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.hdb-nc{background:var(--amber-soft);color:#7A5200}
+.hdb-over{background:var(--danger-soft);color:var(--danger)}
+main{max-width:960px;margin:24px auto;padding:0 16px;display:flex;flex-direction:column;gap:20px}
+.card{background:var(--card);border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.07),0 4px 16px rgba(0,0,0,.05);padding:22px 24px}
+.card-title{font-family:'Zen Kaku Gothic New',sans-serif;font-size:13px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.sc-row{display:flex;gap:12px;flex-wrap:wrap}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;min-width:120px;flex:1}
+.sc-label{font-size:11px;color:var(--slate);font-weight:700;letter-spacing:.04em;margin-bottom:6px}
+.sc-value{font-size:13px;color:var(--navy-deep);font-weight:500;white-space:pre-wrap;line-height:1.4;font-variant-numeric:tabular-nums}
+.sc-accent{font-family:'Zen Kaku Gothic New',sans-serif;font-size:17px;font-weight:700}
+svg.chart{display:block;overflow:visible;width:100%;height:auto}
+.perf-legend{display:flex;gap:16px;margin-bottom:10px;font-size:12px;color:var(--slate)}
+.leg{display:flex;align-items:center;gap:5px}
+.leg-bar{width:14px;height:10px;background:var(--navy-mid);border-radius:2px;opacity:.85}
+.leg-dot{width:10px;height:10px;background:var(--amber);border-radius:50%;border:1.5px solid #fff;box-shadow:0 0 0 1px var(--amber)}
+table.pt{width:100%;border-collapse:collapse;font-size:13px;margin-top:14px}
+table.pt th{text-align:left;padding:7px 10px;color:var(--slate);font-size:11px;font-weight:700;letter-spacing:.04em;border-bottom:2px solid var(--border)}
+table.pt td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--navy-deep)}
+table.pt td.num{font-variant-numeric:tabular-nums;text-align:right;font-weight:500}
+table.pt td.amber{color:var(--amber);font-weight:700}
+.task-list{display:flex;flex-direction:column;gap:10px}
+.task-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.task-card.task-overdue{border-color:var(--danger);border-left-width:4px;background:#fffcfc}
+.task-card.task-nc{border-color:var(--amber);border-left-width:4px;background:#fffdf8}
+.task-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.task-badges{display:flex;gap:5px;flex-wrap:wrap}
+.tbadge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap}
+.t-action{background:#DDE8FF;color:#1D4080}
+.t-meet{background:#FFF3CD;color:#7A5200}
+.t-nc{background:var(--amber-soft);color:#7A5200}
+.task-due{font-size:12px;font-weight:700;white-space:nowrap;flex-shrink:0}
+.due-over{display:inline-flex;align-items:center;gap:5px;background:var(--danger-soft);color:var(--danger);padding:2px 10px;border-radius:4px}
+.due-soon{display:inline-flex;align-items:center;gap:5px;background:var(--amber-soft);color:#7A5200;padding:2px 10px;border-radius:4px}
+.due-ok{display:inline-flex;align-items:center;gap:5px;background:var(--success-soft);color:#2A7A56;padding:2px 10px;border-radius:4px}
+.due-none{display:inline-block;background:#F0F3F7;color:var(--slate);padding:2px 10px;border-radius:4px;font-size:12px}
+.due-delta{font-size:10px;opacity:.8}
+.task-action{font-size:14px;font-weight:500;color:var(--navy-deep);line-height:1.5;word-break:break-all}
+.task-meta{font-size:11px;color:var(--slate);margin-top:5px}
+.empty-tasks{text-align:center;padding:36px;color:var(--slate);font-size:13px;border:2px dashed var(--border);border-radius:10px}
+footer{text-align:center;padding:32px;font-size:11px;color:var(--slate)}
+@media(max-width:600px){.hd-inner{flex-direction:column;align-items:flex-start}.sc-row{flex-direction:column}.sc{min-width:unset;flex:unset;width:100%}.task-top{flex-direction:column}}
 </style>
 </head>
 <body>
 <header>
-  <h1>ヒューマンワーク</h1>
-  <div class="meta">タスクレポート &nbsp;|&nbsp; 最終更新: 2026-07-23 &nbsp;|&nbsp; 未完了 7件 / 完了 23件</div>
+  <div class="hd-inner">
+    <div class="hd-text">
+      <div class="hd-name">ヒューマンワーク</div>
+      <div class="hd-date">最終更新: 2026-07-23</div>
+      <div class="hd-badges">
+        <span class="hd-badge hdb-open">未完了 7件</span>
+        <span class="hd-badge hdb-nc">⚠ 要確認 7件</span>
+        
+      </div>
+    </div>
+    <svg width="76" height="76" viewBox="0 0 76 76" aria-label="タスク内訳">
+  <circle cx="38" cy="38" r="27" fill="none" stroke="#2a4a6a" stroke-width="9" opacity="0.3"/>
+  <circle cx="38" cy="38" r="27" fill="none" stroke="#E8A33D" stroke-width="9" stroke-dasharray="169.65 0.00" stroke-dashoffset="0.00" transform="rotate(-90 38 38)"/>
+  <text x="38" y="34" text-anchor="middle" font-size="15" font-weight="700" fill="white" font-family="sans-serif">7</text>
+  <text x="38" y="49" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.65)" font-family="sans-serif">未完了</text>
+</svg>
+  </div>
 </header>
 <main>
 
 
 <div class="card">
-  <h2>📋 契約・KGI / KPI</h2>
-  <div class="kv">
-    <span class="kl">月額</span><span class="kv-val">380,000円</span>
-    <span class="kl">契約期間</span><span class="kv-val">2025年10月31日 〜 2026年10月30日</span>
-    <span class="kl">施策</span><span class="kv-val">サービスページ改善、記事作成</span>
-    <span class="kl">KGI</span><span class="kv-val">これから</span>
-    <span class="kl">KPI</span><span class="kv-val">これから</span>
-    <span class="kl">目標値</span><span class="kv-val">これから</span>
+  <div class="card-title">契約 · KGI / KPI</div>
+  <div class="sc-row"><div class="sc"><div class="sc-label">月額</div><div class="sc-value">380,000円</div></div><div class="sc"><div class="sc-label">契約期間</div><div class="sc-value">2025年10月31日〜2026年10月30日</div></div><div class="sc"><div class="sc-label">KGI</div><div class="sc-value sc-accent">これから</div></div><div class="sc"><div class="sc-label">KPI</div><div class="sc-value">これから</div></div><div class="sc"><div class="sc-label">施策</div><div class="sc-value">サービスページ改善、記事作成</div></div><div class="sc"><div class="sc-label">目標値</div><div class="sc-value">これから</div></div></div>
+</div>
+
+
+<div class="card">
+  <div class="card-title">サイトパフォーマンス（週次 · 直近最大8週）</div>
+  <div class="perf-legend">
+    <span class="leg"><span class="leg-bar"></span>セッション数</span>
+    <span class="leg"><span class="leg-dot"></span>CV数</span>
   </div>
-</div>
-
-
-<div class="card">
-  <h2>📈 サイトパフォーマンス（直近最大8週・週次）</h2>
-  <svg viewBox="0 0 560 150" width="100%" height="150" aria-label="セッション数グラフ">
-    <line x1="4" y1="128" x2="556" y2="128" stroke="#e5e7eb" stroke-width="1"/>
-    <rect x="4" y="41" width="58" height="87" fill="#4a7adb" rx="2"/>
-<text x="33" y="144" text-anchor="middle" font-size="9" fill="#999">05-28</text>
-<text x="33" y="38" text-anchor="middle" font-size="9" fill="#4a7adb">1.0k</text><rect x="68" y="42" width="58" height="86" fill="#4a7adb" rx="2"/>
-<text x="97" y="144" text-anchor="middle" font-size="9" fill="#999">06-04</text>
-<text x="97" y="39" text-anchor="middle" font-size="9" fill="#4a7adb">989</text><rect x="132" y="12" width="58" height="116" fill="#4a7adb" rx="2"/>
-<text x="161" y="144" text-anchor="middle" font-size="9" fill="#999">06-11</text>
-<text x="161" y="9" text-anchor="middle" font-size="9" fill="#4a7adb">1.3k</text><rect x="196" y="39" width="58" height="89" fill="#4a7adb" rx="2"/>
-<text x="225" y="144" text-anchor="middle" font-size="9" fill="#999">06-18</text>
-<text x="225" y="36" text-anchor="middle" font-size="9" fill="#4a7adb">1.0k</text><rect x="260" y="42" width="58" height="86" fill="#4a7adb" rx="2"/>
-<text x="289" y="144" text-anchor="middle" font-size="9" fill="#999">06-25</text>
-<text x="289" y="39" text-anchor="middle" font-size="9" fill="#4a7adb">989</text><rect x="324" y="38" width="58" height="90" fill="#4a7adb" rx="2"/>
-<text x="353" y="144" text-anchor="middle" font-size="9" fill="#999">07-02</text>
-<text x="353" y="35" text-anchor="middle" font-size="9" fill="#4a7adb">1.0k</text><rect x="388" y="35" width="58" height="93" fill="#4a7adb" rx="2"/>
-<text x="417" y="144" text-anchor="middle" font-size="9" fill="#999">07-09</text>
-<text x="417" y="32" text-anchor="middle" font-size="9" fill="#4a7adb">1.1k</text><rect x="452" y="39" width="58" height="89" fill="#4a7adb" rx="2"/>
-<text x="481" y="144" text-anchor="middle" font-size="9" fill="#999">07-16</text>
-<text x="481" y="36" text-anchor="middle" font-size="9" fill="#4a7adb">1.0k</text>
+  <svg class="chart" viewBox="0 0 600 160" aria-label="週次パフォーマンス">
+    <line x1="8" y1="132" x2="592" y2="132" stroke="var(--border)" stroke-width="1"/>
+    <rect x="8" y="40" width="68" height="92" fill="#1E3F63" rx="3" opacity="0.85"/><text x="42" y="146" text-anchor="middle" font-size="9" fill="#8A9EB8">05-28</text><text x="42" y="37" text-anchor="middle" font-size="9" fill="#1E3F63">1.0k</text><circle cx="42" cy="132" r="4" fill="#E8A33D" stroke="#fff" stroke-width="1.5"/><rect x="81" y="42" width="68" height="90" fill="#1E3F63" rx="3" opacity="0.85"/><text x="115" y="146" text-anchor="middle" font-size="9" fill="#8A9EB8">06-04</text><text x="115" y="39" text-anchor="middle" font-size="9" fill="#1E3F63">989</text><circle cx="115" cy="51" r="4" fill="#E8A33D" stroke="#fff" stroke-width="1.5"/><rect x="154" y="10" width="68" height="122" fill="#1E3F63" rx="3" opacity="0.85"/><text x="188" y="146" text-anchor="middle" font-size="9" fill="#8A9EB8">06-11</text><text x="188" y="7" text-anchor="middle" font-size="9" fill="#1E3F63">1.3k</text><circle cx="188" cy="10" r="4" fill="#E8A33D" stroke="#fff" stroke-width="1.5"/><rect x="227" y="39" width="68" height="93" fill="#1E3F63" rx="3" opacity="0.85"/><text x="261" y="146" text-anchor="middle" font-size="9" fill="#8A9EB8">06-18</text><text x="261" y="36" text-anchor="middle" font-size="9" fill="#1E3F63">1.0k</text><circle cx="261" cy="91" r="4" fill="#E8A33D" stroke="#fff" stroke-width="1.5"/><rect x="300" y="42" width="68" height="90" fill="#1E3F63" rx="3" opacity="0.85"/><text x="334" y="146" text-anchor="middle" font-size="9" fill="#8A9EB8">06-25</text><text x="334" y="39" text-anchor="middle" font-size="9" fill="#1E3F63">989</text><circle cx="334" cy="132" r="4" fill="#E8A33D" stroke="#fff" stroke-width="1.5"/><rect x="373" y="38" width="68" height="94" fill="#1E3F63" rx="3" opacity="0.85"/><text x="407" y="146" text-anchor="middle" font-size="9" fill="#8A9EB8">07-02</text><text x="407" y="35" text-anchor="middle" font-size="9" fill="#1E3F63">1.0k</text><circle cx="407" cy="132" r="4" fill="#E8A33D" stroke="#fff" stroke-width="1.5"/><rect x="446" y="34" width="68" height="98" fill="#1E3F63" rx="3" opacity="0.85"/><text x="480" y="146" text-anchor="middle" font-size="9" fill="#8A9EB8">07-09</text><text x="480" y="31" text-anchor="middle" font-size="9" fill="#1E3F63">1.1k</text><circle cx="480" cy="132" r="4" fill="#E8A33D" stroke="#fff" stroke-width="1.5"/><rect x="519" y="38" width="68" height="94" fill="#1E3F63" rx="3" opacity="0.85"/><text x="553" y="146" text-anchor="middle" font-size="9" fill="#8A9EB8">07-16</text><text x="553" y="35" text-anchor="middle" font-size="9" fill="#1E3F63">1.0k</text><circle cx="553" cy="91" r="4" fill="#E8A33D" stroke="#fff" stroke-width="1.5"/>
   </svg>
-  <table style="margin-top:14px">
-    <thead><tr><th>週開始日</th><th>セッション数</th><th>CV数</th></tr></thead>
-    <tbody><tr>
-    <td>2026-05-28</td>
-    <td>1,005</td>
-    <td>0</td>
-  </tr><tr>
-    <td>2026-06-04</td>
-    <td>989</td>
-    <td>2</td>
-  </tr><tr>
-    <td>2026-06-11</td>
-    <td>1,337</td>
-    <td>3</td>
-  </tr><tr>
-    <td>2026-06-18</td>
-    <td>1,022</td>
-    <td>1</td>
-  </tr><tr>
-    <td>2026-06-25</td>
-    <td>989</td>
-    <td>0</td>
-  </tr><tr>
-    <td>2026-07-02</td>
-    <td>1,035</td>
-    <td>0</td>
-  </tr><tr>
-    <td>2026-07-09</td>
-    <td>1,077</td>
-    <td>0</td>
-  </tr><tr>
-    <td>2026-07-16</td>
-    <td>1,030</td>
-    <td>1</td>
-  </tr></tbody>
+  <table class="pt">
+    <thead><tr><th>週開始日</th><th style="text-align:right">セッション数</th><th style="text-align:right">CV数</th></tr></thead>
+    <tbody><tr style="">
+      <td>2026-05-28</td>
+      <td class="num">1,005</td>
+      <td class="num amber">0</td>
+    </tr><tr style="background:#F6F8FA">
+      <td>2026-06-04</td>
+      <td class="num">989</td>
+      <td class="num amber">2</td>
+    </tr><tr style="">
+      <td>2026-06-11</td>
+      <td class="num">1,337</td>
+      <td class="num amber">3</td>
+    </tr><tr style="background:#F6F8FA">
+      <td>2026-06-18</td>
+      <td class="num">1,022</td>
+      <td class="num amber">1</td>
+    </tr><tr style="">
+      <td>2026-06-25</td>
+      <td class="num">989</td>
+      <td class="num amber">0</td>
+    </tr><tr style="background:#F6F8FA">
+      <td>2026-07-02</td>
+      <td class="num">1,035</td>
+      <td class="num amber">0</td>
+    </tr><tr style="">
+      <td>2026-07-09</td>
+      <td class="num">1,077</td>
+      <td class="num amber">0</td>
+    </tr><tr style="background:#F6F8FA">
+      <td>2026-07-16</td>
+      <td class="num">1,030</td>
+      <td class="num amber">1</td>
+    </tr></tbody>
   </table>
 </div>
 
 <div class="card">
-  <h2>✅ 未完了タスク<span class="chip">7件</span></h2>
-  <table>
-        <thead><tr><th>種別</th><th>議事録日</th><th>アクション内容</th><th>担当</th><th>期限</th></tr></thead>
-        <tbody><tr>
-      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
-      <td>2026-06-17</td>
-      <td class="ac">中間CTA実装前にクライアントへ内容確認・連携を行う</td>
-      <td>弊社（前澤）</td>
-      <td><span class="muted">実装時</span></td>
-    </tr><tr>
-      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
-      <td>2026-06-30</td>
-      <td class="ac">GTM編集権限をSEO会社（弊社）に付与する</td>
-      <td>ヒューマンワーク ハスヌマ様</td>
-      <td><span class="muted">早急に</span></td>
-    </tr><tr>
-      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
-      <td>2026-06-30</td>
-      <td class="ac">全問い合わせフォームのサンクスページURL・GAタグ周りの設定を確認する</td>
-      <td>ヒューマンワーク アリムラ様（必要に応じてエンジニアへ依頼）</td>
-      <td><span class="muted">早急に</span></td>
-    </tr><tr>
-      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
-      <td>2026-06-30</td>
-      <td class="ac">GA・GTM設定確認後、コンバージョン計測の設定案を作成・提案する</td>
-      <td>弊社（主担当）</td>
-      <td><span class="muted">GTM権限付与・サンクスページ確認後</span></td>
-    </tr><tr>
-      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
-      <td>2026-06-30</td>
-      <td class="ac">コンバージョンのテスト送信（テスト問い合わせ入力）実施前にヒューマンワーク側へ事前連絡する</td>
-      <td>弊社（主担当）</td>
-      <td><span class="muted">計測設定完了後</span></td>
-    </tr><tr>
-      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
-      <td>2026-07-14</td>
-      <td class="ac">デューダ・求人ボックスのサービスページ有無を確認し、レポーティング追加を検討</td>
-      <td>GMO</td>
-      <td><span class="muted">次回レポートまで</span></td>
-    </tr><tr>
-      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
-      <td>2026-07-14</td>
-      <td class="ac">コラム含むキーワード別数値をレポートに追加して共有</td>
-      <td>GMO</td>
-      <td><span class="muted">次回レポートから</span></td>
-    </tr></tbody>
-       </table>
-  
-  <div class="done-hd">完了済み（23件）</div>
-  <table>
-    <thead><tr><th>種別</th><th>議事録日</th><th>アクション内容</th><th>担当</th><th>期限</th></tr></thead>
-    <tbody><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-09</td>
-      <td class="ac">テスト入稿3本のURLをTeamsで共有</td>
-      <td>制作会社（guest02）</td>
-      <td>2026-06-09</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-09</td>
-      <td class="ac">テスト記事3本の内容確認・返信</td>
-      <td>ヒューマンワーク（村上様）</td>
-      <td>URL共有後なるべく早く</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-09</td>
-      <td class="ac">リダイレクト対応に関する社内ルール（ファイル権限等）の確認・共有</td>
-      <td>ヒューマンワーク（事業推進部・システム管理）</td>
-      <td>未定（確認でき次第）</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-09</td>
-      <td class="ac">ワイヤーフレーム資料をヒューマンワークへ共有</td>
-      <td>ハスヌマ（guest05）</td>
-      <td>2026-06-09</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-09</td>
-      <td class="ac">6月記事第1弾25本の入稿</td>
-      <td>制作会社（guest02）</td>
-      <td>2026-06-18</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-09</td>
-      <td class="ac">6月記事第2弾残り25本の入稿</td>
-      <td>制作会社（guest02）</td>
-      <td>2026-06-25</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-09</td>
-      <td class="ac">記事管理シートにテック公開フラグ列を追加し運用開始</td>
-      <td>制作会社（guest02・森）</td>
-      <td>入稿開始時</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-09</td>
-      <td class="ac">ワイヤーフレームのSEO観点確認・フィードバック</td>
-      <td>制作会社（guest02）</td>
-      <td>なるべく早く</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-09</td>
-      <td class="ac">サイトリニューアルの進行スケジュール整理・共有</td>
-      <td>ハスヌマ（guest05）</td>
-      <td>整理でき次第</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-09</td>
-      <td class="ac">仮想ページ部分の修正後、代表へ最終確認</td>
-      <td>ヒューマンワーク（ハスヌマ・有村）</td>
-      <td>未定</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-17</td>
-      <td class="ac">KPI・KGI目標値（問い合わせ件数・CPA等）を弊社に共有する</td>
-      <td>ヒューマンワーク（村上）</td>
-      <td>次回MTGまで</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-17</td>
-      <td class="ac">解像度が低いアイキャッチ画像の対象記事ファイル名をTeamsチャットで連絡する</td>
-      <td>弊社（モリ）</td>
-      <td>2026-06-17</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-17</td>
-      <td class="ac">対象記事の高解像度画像をファイル名単位で共有する</td>
-      <td>ヒューマンワーク（制作部）</td>
-      <td>連絡受け次第</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-17</td>
-      <td class="ac">次回MTGの候補日（水曜・木曜）をクライアントへ送付する</td>
-      <td>弊社（前澤）</td>
-      <td>2026-06-17</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-30</td>
-      <td class="ac">Demandツール登録に必要なメンバーのメールアドレスを弊社へ共有する</td>
-      <td>ヒューマンワーク リムラ様</td>
-      <td>早急に</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-30</td>
-      <td class="ac">免責事項テンプレートの複数パターンを作成し、ヒューマンワーク側へ提示・文言の擦り合わせを行う</td>
-      <td>弊社（主担当・森様）</td>
-      <td>次回MTGまで</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-30</td>
-      <td class="ac">インディードジョブブースト関連記事の作成可否を社内確認の上、追加対応する</td>
-      <td>弊社（主担当）</td>
-      <td>早急に</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-30</td>
-      <td class="ac">記事管理シートの要確認記事についてチームスでオカモト様へ連絡し、具体的な懸念内容の追記を依頼する</td>
-      <td>弊社 森様</td>
-      <td>早急に</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-30</td>
-      <td class="ac">次回定例MTGの日程を来月末で確定する</td>
-      <td>弊社（主担当）</td>
-      <td>2026-07-01</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-07-14</td>
-      <td class="ac">GAコンバージョン設計（サンクスページURL等）の確認・整理</td>
-      <td>ヒューマンワーク（オカモト様）</td>
-      <td>2026-07-18</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-07-14</td>
-      <td class="ac">ヒューマンワーク側確認後、コンバージョン設計の詳細案内を実施（テスト問い合わせ等は事前連絡あり）</td>
-      <td>GMO</td>
-      <td>ヒューマンワーク側確認後</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-07-14</td>
-      <td class="ac">7月分記事キーワードの精査</td>
-      <td>村上様（ヒューマンワーク）</td>
-      <td>2026-07-14</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-07-14</td>
-      <td class="ac">記事公開時のTeams通知を @all（全員宛）に変更</td>
-      <td>GMO（森）</td>
-      <td>次回記事公開時から</td>
-    </tr></tbody>
-  </table>
+  <div class="card-title">未完了タスク（7件）</div>
+  <div class="task-list"><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-none">実装時</span></div>
+  </div>
+  <div class="task-action">中間CTA実装前にクライアントへ内容確認・連携を行う</div>
+  <div class="task-meta">👤 弊社（前澤）　📅 2026-06-17</div>
+</div><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-none">早急に</span></div>
+  </div>
+  <div class="task-action">GTM編集権限をSEO会社（弊社）に付与する</div>
+  <div class="task-meta">👤 ヒューマンワーク ハスヌマ様　📅 2026-06-30</div>
+</div><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-none">早急に</span></div>
+  </div>
+  <div class="task-action">全問い合わせフォームのサンクスページURL・GAタグ周りの設定を確認する</div>
+  <div class="task-meta">👤 ヒューマンワーク アリムラ様（必要に応じてエンジニアへ依頼）　📅 2026-06-30</div>
+</div><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-none">GTM権限付与・サンクスページ確認後</span></div>
+  </div>
+  <div class="task-action">GA・GTM設定確認後、コンバージョン計測の設定案を作成・提案する</div>
+  <div class="task-meta">👤 弊社（主担当）　📅 2026-06-30</div>
+</div><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-none">計測設定完了後</span></div>
+  </div>
+  <div class="task-action">コンバージョンのテスト送信（テスト問い合わせ入力）実施前にヒューマンワーク側へ事前連絡する</div>
+  <div class="task-meta">👤 弊社（主担当）　📅 2026-06-30</div>
+</div><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-none">次回レポートまで</span></div>
+  </div>
+  <div class="task-action">デューダ・求人ボックスのサービスページ有無を確認し、レポーティング追加を検討</div>
+  <div class="task-meta">👤 GMO　📅 2026-07-14</div>
+</div><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-none">次回レポートから</span></div>
+  </div>
+  <div class="task-action">コラム含むキーワード別数値をレポートに追加して共有</div>
+  <div class="task-meta">👤 GMO　📅 2026-07-14</div>
+</div></div>
 </div>
 
 </main>
