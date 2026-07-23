@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>イーネットワークス — タスクレポート</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Helvetica Neue',Arial,'Hiragino Sans','Yu Gothic',sans-serif;background:#f4f6fb;color:#222;font-size:14px;line-height:1.6}
+a{color:#1F3864}
+header{background:#1F3864;color:#fff;padding:22px 36px}
+header h1{font-size:24px;font-weight:700;letter-spacing:.02em}
+.meta{font-size:12px;opacity:.7;margin-top:4px}
+main{max-width:920px;margin:24px auto;padding:0 16px;display:flex;flex-direction:column;gap:20px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 14px rgba(0,0,0,.08);padding:22px 26px}
+.card h2{font-size:15px;font-weight:700;color:#1F3864;margin-bottom:14px;padding-bottom:9px;border-bottom:2px solid #e8ecf4}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:7px 14px;font-size:13px}
+.kl{color:#888;font-weight:600}
+.kv-val{white-space:pre-wrap;color:#333}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
+th{text-align:left;padding:8px 10px;color:#666;font-size:12px;font-weight:600;border-bottom:2px solid #e5e7eb;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #f0f1f4;vertical-align:top}
+tr:hover td{background:#f9fafb}
+.done td{opacity:.5;text-decoration:line-through}
+.done .badge{text-decoration:none;opacity:1}
+.ac{max-width:320px;word-break:break-all}
+.badge{display:inline-block;padding:2px 7px;border-radius:3px;font-size:11px;font-weight:700;margin-right:3px;white-space:nowrap}
+.b-action{background:#dce8ff;color:#1D4E8A}
+.b-meet{background:#fff3cd;color:#664d03}
+.b-nc{background:#fff0e0;color:#b36000}
+.overdue{color:#dc3545;font-weight:700}
+.muted{color:#aaa}
+.empty{text-align:center;padding:28px;color:#bbb;font-size:13px}
+.chip{display:inline-block;background:#e8ecf4;color:#1F3864;border-radius:12px;padding:2px 10px;font-size:12px;font-weight:700;margin-left:8px}
+.done-hd{font-size:12px;color:#aaa;font-weight:600;margin:18px 0 8px}
+svg{display:block;overflow:visible}
+footer{text-align:center;padding:28px;font-size:11px;color:#ccc}
+</style>
+</head>
+<body>
+<header>
+  <h1>イーネットワークス</h1>
+  <div class="meta">タスクレポート &nbsp;|&nbsp; 最終更新: 2026-07-23 &nbsp;|&nbsp; 未完了 3件 / 完了 12件</div>
+</header>
+<main>
+
+
+
+
+
+<div class="card">
+  <h2>✅ 未完了タスク<span class="chip">3件</span></h2>
+  <table>
+        <thead><tr><th>種別</th><th>議事録日</th><th>アクション内容</th><th>担当</th><th>期限</th></tr></thead>
+        <tbody><tr>
+      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
+      <td>2026-07-15</td>
+      <td class="ac">お知らせページの管理方針を決定する（現行ページへの追加継続 vs 一覧・詳細ページの新規整備）</td>
+      <td>岩元さん</td>
+      <td><span class="muted">未定</span></td>
+    </tr><tr>
+      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
+      <td>2026-07-15</td>
+      <td class="ac">GitHubのサイト管理配下に「お知らせ管理」フォルダを新規作成してコードを格納する</td>
+      <td>岩元さん</td>
+      <td><span class="muted">未定</span></td>
+    </tr><tr>
+      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
+      <td>2026-07-15</td>
+      <td class="ac">aishipのお知らせ一覧パーツが一覧表示として機能するか検証する</td>
+      <td>岩元さん</td>
+      <td><span class="muted">未定</span></td>
+    </tr></tbody>
+       </table>
+  
+  <div class="done-hd">完了済み（12件）</div>
+  <table>
+    <thead><tr><th>種別</th><th>議事録日</th><th>アクション内容</th><th>担当</th><th>期限</th></tr></thead>
+    <tbody><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-07-15</td>
+      <td class="ac">作成済みコンテンツを自社内でチェックし、決裁担当者に確認を依頼する</td>
+      <td>乙倉様</td>
+      <td>早急に</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-07-15</td>
+      <td class="ac">レンタルPCネットさんへ最終チェックを依頼する</td>
+      <td>乙倉様</td>
+      <td>早急に</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-07-01</td>
+      <td class="ac">GitHubリポジトリ（箱）を作成し、GMOテックメンバーを招待する（CodeCommitからGitHubへの移行）</td>
+      <td>キノ様</td>
+      <td>近日中</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-07-01</td>
+      <td class="ac">Gitのフォルダ構成・ファイル命名ルールをGMOテックに共有する</td>
+      <td>キノ様</td>
+      <td>GitHubリポジトリ作成時</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-07-01</td>
+      <td class="ac">ご利用ガイドページのHTMLコーディング・アイシップへの組み込み着手（画像以外の部分から先行）</td>
+      <td>GMOテック 山本さん</td>
+      <td>近日中</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-07-01</td>
+      <td class="ac">記事制作の注文書をGMOサインで送付（徳倉様・マキ様宛、2本分）</td>
+      <td>GMOテック 岩本さん</td>
+      <td>2026-07-06</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-07-01</td>
+      <td class="ac">記事2本の初稿をキノ様・レンタルPC.net様に送付</td>
+      <td>GMOテック</td>
+      <td>2026-07-10</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-07-01</td>
+      <td class="ac">7月の記事制作スケジュールをSlackで共有</td>
+      <td>GMOテック 岩本さん</td>
+      <td>近日中</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-07-01</td>
+      <td class="ac">山本さんへアイシップのID・パスワードをSlackでメンション</td>
+      <td>GMOテック 岩本さん</td>
+      <td>近日中</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-07-01</td>
+      <td class="ac">商品カテゴリー一覧パーツの作成（カテゴリーごとの商品一覧表示）</td>
+      <td>キノ様</td>
+      <td>依頼受け次第</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-07-01</td>
+      <td class="ac">構造化データ（スキーマ）の各商品ページへのチェックボックス設定を順次進める</td>
+      <td>キノ様</td>
+      <td>順次対応</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-07-01</td>
+      <td class="ac">原稿確定後の記事公開・アップロード作業</td>
+      <td>キノ様</td>
+      <td>2026-07-21</td>
+    </tr></tbody>
+  </table>
+</div>
+
+</main>
+<footer>Generated by gijiroku reporter &nbsp;·&nbsp; 2026-07-23</footer>
+</body>
+</html>
