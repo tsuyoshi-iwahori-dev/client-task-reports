@@ -4,258 +4,194 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ラビット探偵社 — タスクレポート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+:root{--navy-deep:#0F2A4A;--navy-mid:#1E3F63;--slate:#52708C;--paper:#F6F8FA;--card:#FFFFFF;--amber:#E8A33D;--amber-soft:#FCEFD9;--danger:#D64550;--danger-soft:#FBE7E8;--success:#3E9B6F;--success-soft:#E4F3EC;--border:#E2E8EF}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Helvetica Neue',Arial,'Hiragino Sans','Yu Gothic',sans-serif;background:#f4f6fb;color:#222;font-size:14px;line-height:1.6}
-a{color:#1F3864}
-header{background:#1F3864;color:#fff;padding:22px 36px}
-header h1{font-size:24px;font-weight:700;letter-spacing:.02em}
-.meta{font-size:12px;opacity:.7;margin-top:4px}
-main{max-width:920px;margin:24px auto;padding:0 16px;display:flex;flex-direction:column;gap:20px}
-.card{background:#fff;border-radius:10px;box-shadow:0 2px 14px rgba(0,0,0,.08);padding:22px 26px}
-.card h2{font-size:15px;font-weight:700;color:#1F3864;margin-bottom:14px;padding-bottom:9px;border-bottom:2px solid #e8ecf4}
-.kv{display:grid;grid-template-columns:110px 1fr;gap:7px 14px;font-size:13px}
-.kl{color:#888;font-weight:600}
-.kv-val{white-space:pre-wrap;color:#333}
-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
-th{text-align:left;padding:8px 10px;color:#666;font-size:12px;font-weight:600;border-bottom:2px solid #e5e7eb;white-space:nowrap}
-td{padding:8px 10px;border-bottom:1px solid #f0f1f4;vertical-align:top}
-tr:hover td{background:#f9fafb}
-.done td{opacity:.5;text-decoration:line-through}
-.done .badge{text-decoration:none;opacity:1}
-.ac{max-width:320px;word-break:break-all}
-.badge{display:inline-block;padding:2px 7px;border-radius:3px;font-size:11px;font-weight:700;margin-right:3px;white-space:nowrap}
-.b-action{background:#dce8ff;color:#1D4E8A}
-.b-meet{background:#fff3cd;color:#664d03}
-.b-nc{background:#fff0e0;color:#b36000}
-.overdue{color:#dc3545;font-weight:700}
-.muted{color:#aaa}
-.empty{text-align:center;padding:28px;color:#bbb;font-size:13px}
-.chip{display:inline-block;background:#e8ecf4;color:#1F3864;border-radius:12px;padding:2px 10px;font-size:12px;font-weight:700;margin-left:8px}
-.done-hd{font-size:12px;color:#aaa;font-weight:600;margin:18px 0 8px}
-svg{display:block;overflow:visible}
-footer{text-align:center;padding:28px;font-size:11px;color:#ccc}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--paper);color:var(--navy-deep);font-size:14px;line-height:1.6}
+a{color:var(--navy-mid)}
+header{background:var(--navy-deep);color:#fff;padding:20px 32px}
+.hd-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:20px}
+.hd-text{flex:1;min-width:0}
+.hd-name{font-family:'Zen Kaku Gothic New',sans-serif;font-size:26px;font-weight:900;letter-spacing:.02em;line-height:1.2}
+.hd-date{font-size:11px;color:rgba(255,255,255,.55);margin-top:4px}
+.hd-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.hd-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 12px;border-radius:20px;font-size:12px;font-weight:700;white-space:nowrap}
+.hdb-open{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.hdb-nc{background:var(--amber-soft);color:#7A5200}
+.hdb-over{background:var(--danger-soft);color:var(--danger)}
+main{max-width:960px;margin:24px auto;padding:0 16px;display:flex;flex-direction:column;gap:20px}
+.card{background:var(--card);border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.07),0 4px 16px rgba(0,0,0,.05);padding:22px 24px}
+.card-title{font-family:'Zen Kaku Gothic New',sans-serif;font-size:13px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.sc-row{display:flex;gap:12px;flex-wrap:wrap}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;min-width:120px;flex:1}
+.sc-label{font-size:11px;color:var(--slate);font-weight:700;letter-spacing:.04em;margin-bottom:6px}
+.sc-value{font-size:13px;color:var(--navy-deep);font-weight:500;white-space:pre-wrap;line-height:1.4;font-variant-numeric:tabular-nums}
+.sc-accent{font-family:'Zen Kaku Gothic New',sans-serif;font-size:17px;font-weight:700}
+svg.chart{display:block;overflow:visible;width:100%;height:auto}
+.perf-legend{display:flex;gap:16px;margin-bottom:10px;font-size:12px;color:var(--slate)}
+.leg{display:flex;align-items:center;gap:5px}
+.leg-bar{width:14px;height:10px;background:var(--navy-mid);border-radius:2px;opacity:.85}
+.leg-dot{width:10px;height:10px;background:var(--amber);border-radius:50%;border:1.5px solid #fff;box-shadow:0 0 0 1px var(--amber)}
+table.pt{width:100%;border-collapse:collapse;font-size:13px;margin-top:14px}
+table.pt th{text-align:left;padding:7px 10px;color:var(--slate);font-size:11px;font-weight:700;letter-spacing:.04em;border-bottom:2px solid var(--border)}
+table.pt td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--navy-deep)}
+table.pt td.num{font-variant-numeric:tabular-nums;text-align:right;font-weight:500}
+table.pt td.amber{color:var(--amber);font-weight:700}
+.task-list{display:flex;flex-direction:column;gap:10px}
+.task-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.task-card.task-overdue{border-color:var(--danger);border-left-width:4px;background:#fffcfc}
+.task-card.task-nc{border-color:var(--amber);border-left-width:4px;background:#fffdf8}
+.task-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.task-badges{display:flex;gap:5px;flex-wrap:wrap}
+.tbadge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap}
+.t-action{background:#DDE8FF;color:#1D4080}
+.t-meet{background:#FFF3CD;color:#7A5200}
+.t-nc{background:var(--amber-soft);color:#7A5200}
+.task-due{font-size:12px;font-weight:700;white-space:nowrap;flex-shrink:0}
+.due-over{display:inline-flex;align-items:center;gap:5px;background:var(--danger-soft);color:var(--danger);padding:2px 10px;border-radius:4px}
+.due-soon{display:inline-flex;align-items:center;gap:5px;background:var(--amber-soft);color:#7A5200;padding:2px 10px;border-radius:4px}
+.due-ok{display:inline-flex;align-items:center;gap:5px;background:var(--success-soft);color:#2A7A56;padding:2px 10px;border-radius:4px}
+.due-none{display:inline-block;background:#F0F3F7;color:var(--slate);padding:2px 10px;border-radius:4px;font-size:12px}
+.due-delta{font-size:10px;opacity:.8}
+.task-action{font-size:14px;font-weight:500;color:var(--navy-deep);line-height:1.5;word-break:break-all}
+.task-meta{font-size:11px;color:var(--slate);margin-top:5px}
+.empty-tasks{text-align:center;padding:36px;color:var(--slate);font-size:13px;border:2px dashed var(--border);border-radius:10px}
+footer{text-align:center;padding:32px;font-size:11px;color:var(--slate)}
+@media(max-width:600px){.hd-inner{flex-direction:column;align-items:flex-start}.sc-row{flex-direction:column}.sc{min-width:unset;flex:unset;width:100%}.task-top{flex-direction:column}}
 </style>
 </head>
 <body>
 <header>
-  <h1>ラビット探偵社</h1>
-  <div class="meta">タスクレポート &nbsp;|&nbsp; 最終更新: 2026-07-23 &nbsp;|&nbsp; 未完了 7件 / 完了 14件</div>
+  <div class="hd-inner">
+    <div class="hd-text">
+      <div class="hd-name">ラビット探偵社</div>
+      <div class="hd-date">最終更新: 2026-07-23</div>
+      <div class="hd-badges">
+        <span class="hd-badge hdb-open">未完了 7件</span>
+        <span class="hd-badge hdb-nc">⚠ 要確認 6件</span>
+        
+      </div>
+    </div>
+    <svg width="76" height="76" viewBox="0 0 76 76" aria-label="タスク内訳">
+  <circle cx="38" cy="38" r="27" fill="none" stroke="#2a4a6a" stroke-width="9" opacity="0.3"/>
+  <circle cx="38" cy="38" r="27" fill="none" stroke="#E8A33D" stroke-width="9" stroke-dasharray="145.41 24.24" stroke-dashoffset="0.00" transform="rotate(-90 38 38)"/><circle cx="38" cy="38" r="27" fill="none" stroke="#3E9B6F" stroke-width="9" stroke-dasharray="24.24 145.41" stroke-dashoffset="-145.41" transform="rotate(-90 38 38)"/>
+  <text x="38" y="34" text-anchor="middle" font-size="15" font-weight="700" fill="white" font-family="sans-serif">7</text>
+  <text x="38" y="49" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.65)" font-family="sans-serif">未完了</text>
+</svg>
+  </div>
 </header>
 <main>
 
 
 <div class="card">
-  <h2>📋 契約・KGI / KPI</h2>
-  <div class="kv">
-    <span class="kl">月額</span><span class="kv-val">400,000円</span>
-    <span class="kl">契約期間</span><span class="kv-val">2023年6月16日 〜 2027年6月15日</span>
-    <span class="kl">施策</span><span class="kv-val">サービスページ改善、記事作成</span>
-    <span class="kl">KGI</span><span class="kv-val">これから</span>
-    <span class="kl">KPI</span><span class="kv-val">これから</span>
-    <span class="kl">目標値</span><span class="kv-val">これから</span>
+  <div class="card-title">契約 · KGI / KPI</div>
+  <div class="sc-row"><div class="sc"><div class="sc-label">月額</div><div class="sc-value">400,000円</div></div><div class="sc"><div class="sc-label">契約期間</div><div class="sc-value">2023年6月16日〜2027年6月15日</div></div><div class="sc"><div class="sc-label">KGI</div><div class="sc-value sc-accent">これから</div></div><div class="sc"><div class="sc-label">KPI</div><div class="sc-value">これから</div></div><div class="sc"><div class="sc-label">施策</div><div class="sc-value">サービスページ改善、記事作成</div></div><div class="sc"><div class="sc-label">目標値</div><div class="sc-value">これから</div></div></div>
+</div>
+
+
+<div class="card">
+  <div class="card-title">サイトパフォーマンス（週次 · 直近最大8週）</div>
+  <div class="perf-legend">
+    <span class="leg"><span class="leg-bar"></span>セッション数</span>
+    <span class="leg"><span class="leg-dot"></span>CV数</span>
   </div>
-</div>
-
-
-<div class="card">
-  <h2>📈 サイトパフォーマンス（直近最大8週・週次）</h2>
-  <svg viewBox="0 0 560 150" width="100%" height="150" aria-label="セッション数グラフ">
-    <line x1="4" y1="128" x2="556" y2="128" stroke="#e5e7eb" stroke-width="1"/>
-    <rect x="4" y="12" width="58" height="116" fill="#4a7adb" rx="2"/>
-<text x="33" y="144" text-anchor="middle" font-size="9" fill="#999">05-28</text>
-<text x="33" y="9" text-anchor="middle" font-size="9" fill="#4a7adb">2.1k</text><rect x="68" y="32" width="58" height="96" fill="#4a7adb" rx="2"/>
-<text x="97" y="144" text-anchor="middle" font-size="9" fill="#999">06-04</text>
-<text x="97" y="29" text-anchor="middle" font-size="9" fill="#4a7adb">1.7k</text><rect x="132" y="18" width="58" height="110" fill="#4a7adb" rx="2"/>
-<text x="161" y="144" text-anchor="middle" font-size="9" fill="#999">06-11</text>
-<text x="161" y="15" text-anchor="middle" font-size="9" fill="#4a7adb">2.0k</text><rect x="196" y="29" width="58" height="99" fill="#4a7adb" rx="2"/>
-<text x="225" y="144" text-anchor="middle" font-size="9" fill="#999">06-18</text>
-<text x="225" y="26" text-anchor="middle" font-size="9" fill="#4a7adb">1.8k</text><rect x="260" y="37" width="58" height="91" fill="#4a7adb" rx="2"/>
-<text x="289" y="144" text-anchor="middle" font-size="9" fill="#999">06-25</text>
-<text x="289" y="34" text-anchor="middle" font-size="9" fill="#4a7adb">1.6k</text><rect x="324" y="21" width="58" height="107" fill="#4a7adb" rx="2"/>
-<text x="353" y="144" text-anchor="middle" font-size="9" fill="#999">07-02</text>
-<text x="353" y="18" text-anchor="middle" font-size="9" fill="#4a7adb">1.9k</text><rect x="388" y="27" width="58" height="101" fill="#4a7adb" rx="2"/>
-<text x="417" y="144" text-anchor="middle" font-size="9" fill="#999">07-09</text>
-<text x="417" y="24" text-anchor="middle" font-size="9" fill="#4a7adb">1.8k</text><rect x="452" y="28" width="58" height="100" fill="#4a7adb" rx="2"/>
-<text x="481" y="144" text-anchor="middle" font-size="9" fill="#999">07-16</text>
-<text x="481" y="25" text-anchor="middle" font-size="9" fill="#4a7adb">1.8k</text>
+  <svg class="chart" viewBox="0 0 600 160" aria-label="週次パフォーマンス">
+    <line x1="8" y1="132" x2="592" y2="132" stroke="var(--border)" stroke-width="1"/>
+    <rect x="8" y="10" width="68" height="122" fill="#1E3F63" rx="3" opacity="0.85"/><text x="42" y="146" text-anchor="middle" font-size="9" fill="#8A9EB8">05-28</text><text x="42" y="7" text-anchor="middle" font-size="9" fill="#1E3F63">2.1k</text><circle cx="42" cy="74" r="4" fill="#E8A33D" stroke="#fff" stroke-width="1.5"/><rect x="81" y="31" width="68" height="101" fill="#1E3F63" rx="3" opacity="0.85"/><text x="115" y="146" text-anchor="middle" font-size="9" fill="#8A9EB8">06-04</text><text x="115" y="28" text-anchor="middle" font-size="9" fill="#1E3F63">1.7k</text><circle cx="115" cy="45" r="4" fill="#E8A33D" stroke="#fff" stroke-width="1.5"/><rect x="154" y="16" width="68" height="116" fill="#1E3F63" rx="3" opacity="0.85"/><text x="188" y="146" text-anchor="middle" font-size="9" fill="#8A9EB8">06-11</text><text x="188" y="13" text-anchor="middle" font-size="9" fill="#1E3F63">2.0k</text><circle cx="188" cy="59" r="4" fill="#E8A33D" stroke="#fff" stroke-width="1.5"/><rect x="227" y="28" width="68" height="104" fill="#1E3F63" rx="3" opacity="0.85"/><text x="261" y="146" text-anchor="middle" font-size="9" fill="#8A9EB8">06-18</text><text x="261" y="25" text-anchor="middle" font-size="9" fill="#1E3F63">1.8k</text><circle cx="261" cy="56" r="4" fill="#E8A33D" stroke="#fff" stroke-width="1.5"/><rect x="300" y="36" width="68" height="96" fill="#1E3F63" rx="3" opacity="0.85"/><text x="334" y="146" text-anchor="middle" font-size="9" fill="#8A9EB8">06-25</text><text x="334" y="33" text-anchor="middle" font-size="9" fill="#1E3F63">1.6k</text><circle cx="334" cy="51" r="4" fill="#E8A33D" stroke="#fff" stroke-width="1.5"/><rect x="373" y="20" width="68" height="112" fill="#1E3F63" rx="3" opacity="0.85"/><text x="407" y="146" text-anchor="middle" font-size="9" fill="#8A9EB8">07-02</text><text x="407" y="17" text-anchor="middle" font-size="9" fill="#1E3F63">1.9k</text><circle cx="407" cy="10" r="4" fill="#E8A33D" stroke="#fff" stroke-width="1.5"/><rect x="446" y="25" width="68" height="107" fill="#1E3F63" rx="3" opacity="0.85"/><text x="480" y="146" text-anchor="middle" font-size="9" fill="#8A9EB8">07-09</text><text x="480" y="22" text-anchor="middle" font-size="9" fill="#1E3F63">1.8k</text><circle cx="480" cy="65" r="4" fill="#E8A33D" stroke="#fff" stroke-width="1.5"/><rect x="519" y="27" width="68" height="105" fill="#1E3F63" rx="3" opacity="0.85"/><text x="553" y="146" text-anchor="middle" font-size="9" fill="#8A9EB8">07-16</text><text x="553" y="24" text-anchor="middle" font-size="9" fill="#1E3F63">1.8k</text><circle cx="553" cy="62" r="4" fill="#E8A33D" stroke="#fff" stroke-width="1.5"/>
   </svg>
-  <table style="margin-top:14px">
-    <thead><tr><th>週開始日</th><th>セッション数</th><th>CV数</th></tr></thead>
-    <tbody><tr>
-    <td>2026-05-28</td>
-    <td>2,070</td>
-    <td>20</td>
-  </tr><tr>
-    <td>2026-06-04</td>
-    <td>1,720</td>
-    <td>30</td>
-  </tr><tr>
-    <td>2026-06-11</td>
-    <td>1,968</td>
-    <td>25</td>
-  </tr><tr>
-    <td>2026-06-18</td>
-    <td>1,765</td>
-    <td>26</td>
-  </tr><tr>
-    <td>2026-06-25</td>
-    <td>1,631</td>
-    <td>28</td>
-  </tr><tr>
-    <td>2026-07-02</td>
-    <td>1,905</td>
-    <td>42</td>
-  </tr><tr>
-    <td>2026-07-09</td>
-    <td>1,808</td>
-    <td>23</td>
-  </tr><tr>
-    <td>2026-07-16</td>
-    <td>1,777</td>
-    <td>24</td>
-  </tr></tbody>
+  <table class="pt">
+    <thead><tr><th>週開始日</th><th style="text-align:right">セッション数</th><th style="text-align:right">CV数</th></tr></thead>
+    <tbody><tr style="">
+      <td>2026-05-28</td>
+      <td class="num">2,070</td>
+      <td class="num amber">20</td>
+    </tr><tr style="background:#F6F8FA">
+      <td>2026-06-04</td>
+      <td class="num">1,720</td>
+      <td class="num amber">30</td>
+    </tr><tr style="">
+      <td>2026-06-11</td>
+      <td class="num">1,968</td>
+      <td class="num amber">25</td>
+    </tr><tr style="background:#F6F8FA">
+      <td>2026-06-18</td>
+      <td class="num">1,765</td>
+      <td class="num amber">26</td>
+    </tr><tr style="">
+      <td>2026-06-25</td>
+      <td class="num">1,631</td>
+      <td class="num amber">28</td>
+    </tr><tr style="background:#F6F8FA">
+      <td>2026-07-02</td>
+      <td class="num">1,905</td>
+      <td class="num amber">42</td>
+    </tr><tr style="">
+      <td>2026-07-09</td>
+      <td class="num">1,808</td>
+      <td class="num amber">23</td>
+    </tr><tr style="background:#F6F8FA">
+      <td>2026-07-16</td>
+      <td class="num">1,782</td>
+      <td class="num amber">24</td>
+    </tr></tbody>
   </table>
 </div>
 
 <div class="card">
-  <h2>✅ 未完了タスク<span class="chip">7件</span></h2>
-  <table>
-        <thead><tr><th>種別</th><th>議事録日</th><th>アクション内容</th><th>担当</th><th>期限</th></tr></thead>
-        <tbody><tr>
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-07-14</td>
-      <td class="ac">成功報酬の実費用を透明性ある形で紹介するコラム記事の作成</td>
-      <td>浜田（コンサル）</td>
-      <td><span class="">2026-08-12</span></td>
-    </tr><tr>
-      <td><span class="badge b-meet">定例会</span><span class="badge b-nc">要確認</span></td>
-      <td>2026-07-14</td>
-      <td class="ac">次回定例会（● 次回定例会：8月12日（水）13時〜14時（1時間））</td>
-      <td></td>
-      <td><span class="">2026-08-12</span></td>
-    </tr><tr>
-      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
-      <td>2026-06-29</td>
-      <td class="ac">付郵便送達ページの下書きをテスト環境で共有し、クライアントにフィードバックを依頼</td>
-      <td>浜田（guest03）</td>
-      <td><span class="muted">2026年7月中</span></td>
-    </tr><tr>
-      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
-      <td>2026-06-29</td>
-      <td class="ac">9月定例で施策の構成比率・注力ページを見直し再設定</td>
-      <td>社内全員</td>
-      <td><span class="muted">2026年9月上旬</span></td>
-    </tr><tr>
-      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
-      <td>2026-07-14</td>
-      <td class="ac">付郵便送達ページの下書きを作成・共有</td>
-      <td>浜田（コンサル）</td>
-      <td><span class="muted">7月末</span></td>
-    </tr><tr>
-      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
-      <td>2026-07-14</td>
-      <td class="ac">千葉・埼玉・静岡支店のGBP登録状況確認・登録促進</td>
-      <td>岡崎様</td>
-      <td><span class="muted">近日中</span></td>
-    </tr><tr>
-      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
-      <td>2026-07-14</td>
-      <td class="ac">GBP情報反映完了の連絡をコンサルへ送付（土日でも即日対応）</td>
-      <td>岡崎様</td>
-      <td><span class="muted">確認でき次第</span></td>
-    </tr></tbody>
-       </table>
-  
-  <div class="done-hd">完了済み（14件）</div>
-  <table>
-    <thead><tr><th>種別</th><th>議事録日</th><th>アクション内容</th><th>担当</th><th>期限</th></tr></thead>
-    <tbody><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-29</td>
-      <td class="ac">次回定例（7月前半〜中旬）の日程をチャットで連絡</td>
-      <td>社内（guest01）</td>
-      <td>7月上旬</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-29</td>
-      <td class="ac">浮気調査費用・料金相場等の優先記事を最優先で作成・公開</td>
-      <td>浜田（guest03）</td>
-      <td>2026年7月中</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-29</td>
-      <td class="ac">GPSタグ・エアタグ貸し出しサービス関連のコラム記事作成（自分でできない→探偵依頼への導線）</td>
-      <td>浜田（guest03）</td>
-      <td>次回定例まで</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-29</td>
-      <td class="ac">提携弁護士情報をコラムへ反映（浮気発覚→離婚→弁護士紹介の導線設置）</td>
-      <td>浜田（guest03）</td>
-      <td>次回定例まで</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-29</td>
-      <td class="ac">エリアページ作成着手（東京・横浜等から開始し、最終64ページを目標）</td>
-      <td>浜田（guest03）</td>
-      <td>随時（毎月進捗報告）</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-29</td>
-      <td class="ac">既存記事リライト（月5ページ・計10記事/月）の実施</td>
-      <td>浜田（guest03）</td>
-      <td>毎月継続</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-29</td>
-      <td class="ac">新規記事作成（月10本・年間100本）の継続</td>
-      <td>浜田（guest03）</td>
-      <td>毎月継続</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-29</td>
-      <td class="ac">提携弁護士情報の詳細をチャットで共有</td>
-      <td>クライアント（guest02）</td>
-      <td>次回定例まで</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-06-29</td>
-      <td class="ac">独自サービス・機材情報（エアタグ詳細・料金等）を随時共有</td>
-      <td>クライアント（guest02）</td>
-      <td>随時</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-07-14</td>
-      <td class="ac">新規記事10件のチェック完了後、ドキュメントをクライアントに共有</td>
-      <td>浜田（コンサル）</td>
-      <td>近日中</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-07-14</td>
-      <td class="ac">Googleビジネスプロフィール（新宿）の編集権限解禁対応</td>
-      <td>岡崎様（社内担当に共有済み）</td>
-      <td>近日中</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-07-14</td>
-      <td class="ac">GA4閲覧権限付与の依頼文をチャットワークで岡崎様に送付</td>
-      <td>浜田（コンサル）</td>
-      <td>2026-07-14</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-07-14</td>
-      <td class="ac">GA4閲覧権限付与（カマさんへ転送・対応依頼）</td>
-      <td>岡崎様</td>
-      <td>近日中</td>
-    </tr><tr class="done">
-      <td><span class="badge b-action">アクション</span></td>
-      <td>2026-07-14</td>
-      <td class="ac">8月定例会（8月12日13時〜14時）のZoom URL送付</td>
-      <td>浜田（コンサル）</td>
-      <td>近日中</td>
-    </tr></tbody>
-  </table>
+  <div class="card-title">未完了タスク（7件）</div>
+  <div class="task-list"><div class="task-card">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span></div>
+    <div class="task-due"><span class="due-ok">2026-08-12</span></div>
+  </div>
+  <div class="task-action">成功報酬の実費用を透明性ある形で紹介するコラム記事の作成</div>
+  <div class="task-meta">👤 浜田（コンサル）　📅 2026-07-14</div>
+</div><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-meet">定例会</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-ok">2026-08-12</span></div>
+  </div>
+  <div class="task-action">次回定例会（● 次回定例会：8月12日（水）13時〜14時（1時間））</div>
+  <div class="task-meta">📅 2026-07-14</div>
+</div><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-none">2026年7月中</span></div>
+  </div>
+  <div class="task-action">付郵便送達ページの下書きをテスト環境で共有し、クライアントにフィードバックを依頼</div>
+  <div class="task-meta">👤 浜田（guest03）　📅 2026-06-29</div>
+</div><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-none">2026年9月上旬</span></div>
+  </div>
+  <div class="task-action">9月定例で施策の構成比率・注力ページを見直し再設定</div>
+  <div class="task-meta">👤 社内全員　📅 2026-06-29</div>
+</div><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-none">7月末</span></div>
+  </div>
+  <div class="task-action">付郵便送達ページの下書きを作成・共有</div>
+  <div class="task-meta">👤 浜田（コンサル）　📅 2026-07-14</div>
+</div><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-none">近日中</span></div>
+  </div>
+  <div class="task-action">千葉・埼玉・静岡支店のGBP登録状況確認・登録促進</div>
+  <div class="task-meta">👤 岡崎様　📅 2026-07-14</div>
+</div><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-none">確認でき次第</span></div>
+  </div>
+  <div class="task-action">GBP情報反映完了の連絡をコンサルへ送付（土日でも即日対応）</div>
+  <div class="task-meta">👤 岡崎様　📅 2026-07-14</div>
+</div></div>
 </div>
 
 </main>
