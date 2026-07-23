@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>クルーズプラネット — タスクレポート</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Helvetica Neue',Arial,'Hiragino Sans','Yu Gothic',sans-serif;background:#f4f6fb;color:#222;font-size:14px;line-height:1.6}
+a{color:#1F3864}
+header{background:#1F3864;color:#fff;padding:22px 36px}
+header h1{font-size:24px;font-weight:700;letter-spacing:.02em}
+.meta{font-size:12px;opacity:.7;margin-top:4px}
+main{max-width:920px;margin:24px auto;padding:0 16px;display:flex;flex-direction:column;gap:20px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 14px rgba(0,0,0,.08);padding:22px 26px}
+.card h2{font-size:15px;font-weight:700;color:#1F3864;margin-bottom:14px;padding-bottom:9px;border-bottom:2px solid #e8ecf4}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:7px 14px;font-size:13px}
+.kl{color:#888;font-weight:600}
+.kv-val{white-space:pre-wrap;color:#333}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
+th{text-align:left;padding:8px 10px;color:#666;font-size:12px;font-weight:600;border-bottom:2px solid #e5e7eb;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #f0f1f4;vertical-align:top}
+tr:hover td{background:#f9fafb}
+.done td{opacity:.5;text-decoration:line-through}
+.done .badge{text-decoration:none;opacity:1}
+.ac{max-width:320px;word-break:break-all}
+.badge{display:inline-block;padding:2px 7px;border-radius:3px;font-size:11px;font-weight:700;margin-right:3px;white-space:nowrap}
+.b-action{background:#dce8ff;color:#1D4E8A}
+.b-meet{background:#fff3cd;color:#664d03}
+.b-nc{background:#fff0e0;color:#b36000}
+.overdue{color:#dc3545;font-weight:700}
+.muted{color:#aaa}
+.empty{text-align:center;padding:28px;color:#bbb;font-size:13px}
+.chip{display:inline-block;background:#e8ecf4;color:#1F3864;border-radius:12px;padding:2px 10px;font-size:12px;font-weight:700;margin-left:8px}
+.done-hd{font-size:12px;color:#aaa;font-weight:600;margin:18px 0 8px}
+svg{display:block;overflow:visible}
+footer{text-align:center;padding:28px;font-size:11px;color:#ccc}
+</style>
+</head>
+<body>
+<header>
+  <h1>クルーズプラネット</h1>
+  <div class="meta">タスクレポート &nbsp;|&nbsp; 最終更新: 2026-07-23 &nbsp;|&nbsp; 未完了 3件 / 完了 16件</div>
+</header>
+<main>
+
+
+<div class="card">
+  <h2>📋 契約・KGI / KPI</h2>
+  <div class="kv">
+    <span class="kl">月額</span><span class="kv-val">350,000円</span>
+    <span class="kl">契約期間</span><span class="kv-val">2020年1月1日 〜 2026年12月31日</span>
+    <span class="kl">施策</span><span class="kv-val">サービスページ改善</span>
+    <span class="kl">KGI</span><span class="kv-val">CV数</span>
+    <span class="kl">KPI</span><span class="kv-val">セッション数</span>
+    <span class="kl">目標値</span><span class="kv-val">・CV数876件（2026年11月時点）
+・セッション数145,936（2026年11月時点）</span>
+  </div>
+</div>
+
+
+<div class="card">
+  <h2>📈 サイトパフォーマンス（直近最大8週・週次）</h2>
+  <svg viewBox="0 0 560 150" width="100%" height="150" aria-label="セッション数グラフ">
+    <line x1="4" y1="128" x2="556" y2="128" stroke="#e5e7eb" stroke-width="1"/>
+    <rect x="4" y="41" width="58" height="87" fill="#4a7adb" rx="2"/>
+<text x="33" y="144" text-anchor="middle" font-size="9" fill="#999">05-28</text>
+<text x="33" y="38" text-anchor="middle" font-size="9" fill="#4a7adb">24.9k</text><rect x="68" y="33" width="58" height="95" fill="#4a7adb" rx="2"/>
+<text x="97" y="144" text-anchor="middle" font-size="9" fill="#999">06-04</text>
+<text x="97" y="30" text-anchor="middle" font-size="9" fill="#4a7adb">27.0k</text><rect x="132" y="47" width="58" height="81" fill="#4a7adb" rx="2"/>
+<text x="161" y="144" text-anchor="middle" font-size="9" fill="#999">06-11</text>
+<text x="161" y="44" text-anchor="middle" font-size="9" fill="#4a7adb">23.1k</text><rect x="196" y="48" width="58" height="80" fill="#4a7adb" rx="2"/>
+<text x="225" y="144" text-anchor="middle" font-size="9" fill="#999">06-18</text>
+<text x="225" y="45" text-anchor="middle" font-size="9" fill="#4a7adb">22.8k</text><rect x="260" y="12" width="58" height="116" fill="#4a7adb" rx="2"/>
+<text x="289" y="144" text-anchor="middle" font-size="9" fill="#999">06-25</text>
+<text x="289" y="9" text-anchor="middle" font-size="9" fill="#4a7adb">33.1k</text><rect x="324" y="34" width="58" height="94" fill="#4a7adb" rx="2"/>
+<text x="353" y="144" text-anchor="middle" font-size="9" fill="#999">07-02</text>
+<text x="353" y="31" text-anchor="middle" font-size="9" fill="#4a7adb">26.9k</text><rect x="388" y="45" width="58" height="83" fill="#4a7adb" rx="2"/>
+<text x="417" y="144" text-anchor="middle" font-size="9" fill="#999">07-09</text>
+<text x="417" y="42" text-anchor="middle" font-size="9" fill="#4a7adb">23.8k</text><rect x="452" y="21" width="58" height="107" fill="#4a7adb" rx="2"/>
+<text x="481" y="144" text-anchor="middle" font-size="9" fill="#999">07-16</text>
+<text x="481" y="18" text-anchor="middle" font-size="9" fill="#4a7adb">30.6k</text>
+  </svg>
+  <table style="margin-top:14px">
+    <thead><tr><th>週開始日</th><th>セッション数</th><th>CV数</th></tr></thead>
+    <tbody><tr>
+    <td>2026-05-28</td>
+    <td>24,934</td>
+    <td>169</td>
+  </tr><tr>
+    <td>2026-06-04</td>
+    <td>26,955</td>
+    <td>122</td>
+  </tr><tr>
+    <td>2026-06-11</td>
+    <td>23,148</td>
+    <td>98</td>
+  </tr><tr>
+    <td>2026-06-18</td>
+    <td>22,767</td>
+    <td>113</td>
+  </tr><tr>
+    <td>2026-06-25</td>
+    <td>33,079</td>
+    <td>132</td>
+  </tr><tr>
+    <td>2026-07-02</td>
+    <td>26,909</td>
+    <td>104</td>
+  </tr><tr>
+    <td>2026-07-09</td>
+    <td>23,778</td>
+    <td>114</td>
+  </tr><tr>
+    <td>2026-07-16</td>
+    <td>30,634</td>
+    <td>120</td>
+  </tr></tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h2>✅ 未完了タスク<span class="chip">3件</span></h2>
+  <table>
+        <thead><tr><th>種別</th><th>議事録日</th><th>アクション内容</th><th>担当</th><th>期限</th></tr></thead>
+        <tbody><tr>
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-07-07</td>
+      <td class="ac">特設ページのURL確認後、テレビ放映前後のセッション数・検索クエリをウォッチ</td>
+      <td>GMOテック</td>
+      <td><span class="">2026-08-29</span></td>
+    </tr><tr>
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-07-07</td>
+      <td class="ac">テレビ出演情報をサイトのお知らせ欄に掲載</td>
+      <td>クルーズプラネット</td>
+      <td><span class="">2026-08-29</span></td>
+    </tr><tr>
+      <td><span class="badge b-action">アクション</span><span class="badge b-nc">要確認</span></td>
+      <td>2026-07-07</td>
+      <td class="ac">施策実装済み箇所・未対応箇所（システム会社絡み含む）の整理と次回定例での報告準備</td>
+      <td>GMOテック</td>
+      <td><span class="muted">2026年08月定例会まで</span></td>
+    </tr></tbody>
+       </table>
+  
+  <div class="done-hd">完了済み（16件）</div>
+  <table>
+    <thead><tr><th>種別</th><th>議事録日</th><th>アクション内容</th><th>担当</th><th>期限</th></tr></thead>
+    <tbody><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-06-15</td>
+      <td class="ac">5月末Googleコアアップデートの御社への影響分析レポートを作成し、メールで送付</td>
+      <td>岩堀</td>
+      <td>2026-06-19</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-06-15</td>
+      <td class="ac">本日MTGの議事録・資料一式（SEOレポート、AIOレポート）をメールで送付</td>
+      <td>岩堀</td>
+      <td>2026-06-16</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-06-15</td>
+      <td class="ac">AI対策プロンプトシート（Excel、約50本）を参考資料としてメールで送付</td>
+      <td>岩堀</td>
+      <td>2026-06-16</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-06-15</td>
+      <td class="ac">次回MTG（2026年7月7日10時半〜）の招待・日程確定連絡をメールで送付</td>
+      <td>岩堀</td>
+      <td>2026-06-16</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-06-15</td>
+      <td class="ac">「初めての方へ」ページのリダイレクト設定とカノニカルタグを実装</td>
+      <td>クルーズプラネット（開発担当）</td>
+      <td>未定（早期対応推奨）</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-06-15</td>
+      <td class="ac">サイトマップの重複URLを整理し、修正済みサイトマップを再アップロード</td>
+      <td>クルーズプラネット（開発担当）</td>
+      <td>未定</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-06-15</td>
+      <td class="ac">「初めての方へ」ページのH1タグを隠しテキスト解消（divタグへ変更）し、テキストを「クルーズ旅行が初めての方へ」に変更</td>
+      <td>クルーズプラネット（開発担当）</td>
+      <td>未定（早期対応推奨）</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-06-15</td>
+      <td class="ac">全ページの画像にalt属性を設定</td>
+      <td>クルーズプラネット（開発担当）</td>
+      <td>未定</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-06-15</td>
+      <td class="ac">「初めての方へ」ページへ内部リンク（代理店提案の推奨リンク先）を設置</td>
+      <td>クルーズプラネット（開発担当）</td>
+      <td>未定</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-06-15</td>
+      <td class="ac">パンくずリストのテキスト修正と構造化データの追加実装</td>
+      <td>クルーズプラネット（開発担当）</td>
+      <td>未定</td>
+    </tr><tr class="done">
+      <td><span class="badge b-meet">定例会</span></td>
+      <td>2026-06-15</td>
+      <td class="ac">次回定例会（● 次回MTGは2026年7月7日（七夕）10時半〜、クライアント先（御社オフィス）にて対面で実施予定）</td>
+      <td></td>
+      <td>2026-07-07</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-07-07</td>
+      <td class="ac">テレビ放映（8月29日テレビ朝日）に向けたリスティング広告（指名キーワード）の出稿検討・準備</td>
+      <td>クルーズプラネット（広告担当）</td>
+      <td>2026年08月中旬まで</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-07-07</td>
+      <td class="ac">テレビ局・関係者の許可取得後、放映情報を盛り込んだ特設ページを作成・公開</td>
+      <td>クルーズプラネット</td>
+      <td>2026年08月前半</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-07-07</td>
+      <td class="ac">エリアページ最適化施策（カノニカル・H1・メタディスクリプション・alt属性・timeタグ・パンくずリスト等）の実装対応</td>
+      <td>クルーズプラネット（北田様）</td>
+      <td>対応可能範囲から順次実施</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-07-07</td>
+      <td class="ac">次回定例会の日程確定連絡（8月4日以降の午前帯で調整）</td>
+      <td>GMOテック</td>
+      <td>2026年07月中</td>
+    </tr><tr class="done">
+      <td><span class="badge b-meet">定例会</span></td>
+      <td>2026-07-07</td>
+      <td class="ac">次回定例会（● 次回定例は8月4日（火）以降の午前中を候補として調整（月末28日頃にレポートを送付後、以降の日程））</td>
+      <td></td>
+      <td>2026-08-04</td>
+    </tr></tbody>
+  </table>
+</div>
+
+</main>
+<footer>Generated by gijiroku reporter &nbsp;·&nbsp; 2026-07-23</footer>
+</body>
+</html>
