@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中央住宅 — タスクレポート</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Helvetica Neue',Arial,'Hiragino Sans','Yu Gothic',sans-serif;background:#f4f6fb;color:#222;font-size:14px;line-height:1.6}
+a{color:#1F3864}
+header{background:#1F3864;color:#fff;padding:22px 36px}
+header h1{font-size:24px;font-weight:700;letter-spacing:.02em}
+.meta{font-size:12px;opacity:.7;margin-top:4px}
+main{max-width:920px;margin:24px auto;padding:0 16px;display:flex;flex-direction:column;gap:20px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 14px rgba(0,0,0,.08);padding:22px 26px}
+.card h2{font-size:15px;font-weight:700;color:#1F3864;margin-bottom:14px;padding-bottom:9px;border-bottom:2px solid #e8ecf4}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:7px 14px;font-size:13px}
+.kl{color:#888;font-weight:600}
+.kv-val{white-space:pre-wrap;color:#333}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
+th{text-align:left;padding:8px 10px;color:#666;font-size:12px;font-weight:600;border-bottom:2px solid #e5e7eb;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #f0f1f4;vertical-align:top}
+tr:hover td{background:#f9fafb}
+.done td{opacity:.5;text-decoration:line-through}
+.done .badge{text-decoration:none;opacity:1}
+.ac{max-width:320px;word-break:break-all}
+.badge{display:inline-block;padding:2px 7px;border-radius:3px;font-size:11px;font-weight:700;margin-right:3px;white-space:nowrap}
+.b-action{background:#dce8ff;color:#1D4E8A}
+.b-meet{background:#fff3cd;color:#664d03}
+.b-nc{background:#fff0e0;color:#b36000}
+.overdue{color:#dc3545;font-weight:700}
+.muted{color:#aaa}
+.empty{text-align:center;padding:28px;color:#bbb;font-size:13px}
+.chip{display:inline-block;background:#e8ecf4;color:#1F3864;border-radius:12px;padding:2px 10px;font-size:12px;font-weight:700;margin-left:8px}
+.done-hd{font-size:12px;color:#aaa;font-weight:600;margin:18px 0 8px}
+svg{display:block;overflow:visible}
+footer{text-align:center;padding:28px;font-size:11px;color:#ccc}
+</style>
+</head>
+<body>
+<header>
+  <h1>中央住宅</h1>
+  <div class="meta">タスクレポート &nbsp;|&nbsp; 最終更新: 2026-07-23 &nbsp;|&nbsp; 未完了 1件 / 完了 4件</div>
+</header>
+<main>
+
+
+<div class="card">
+  <h2>📋 契約・KGI / KPI</h2>
+  <div class="kv">
+    <span class="kl">月額</span><span class="kv-val">200,000円</span>
+    <span class="kl">契約期間</span><span class="kv-val">2019年11月30日 〜 2026年3月31日</span>
+    <span class="kl">施策</span><span class="kv-val">サービスページ改善</span>
+    <span class="kl">KGI</span><span class="kv-val">CV数</span>
+    <span class="kl">KPI</span><span class="kv-val">セッション数、順位</span>
+    <span class="kl">目標値</span><span class="kv-val">・CV数200（2026年全体）
+・セッション数117,493（2026年全体）</span>
+  </div>
+</div>
+
+
+<div class="card">
+  <h2>📈 サイトパフォーマンス（直近最大8週・週次）</h2>
+  <svg viewBox="0 0 560 150" width="100%" height="150" aria-label="セッション数グラフ">
+    <line x1="4" y1="128" x2="556" y2="128" stroke="#e5e7eb" stroke-width="1"/>
+    <rect x="4" y="25" width="58" height="103" fill="#4a7adb" rx="2"/>
+<text x="33" y="144" text-anchor="middle" font-size="9" fill="#999">05-28</text>
+<text x="33" y="22" text-anchor="middle" font-size="9" fill="#4a7adb">3.6k</text><rect x="68" y="13" width="58" height="115" fill="#4a7adb" rx="2"/>
+<text x="97" y="144" text-anchor="middle" font-size="9" fill="#999">06-04</text>
+<text x="97" y="10" text-anchor="middle" font-size="9" fill="#4a7adb">4.0k</text><rect x="132" y="12" width="58" height="116" fill="#4a7adb" rx="2"/>
+<text x="161" y="144" text-anchor="middle" font-size="9" fill="#999">06-11</text>
+<text x="161" y="9" text-anchor="middle" font-size="9" fill="#4a7adb">4.0k</text><rect x="196" y="25" width="58" height="103" fill="#4a7adb" rx="2"/>
+<text x="225" y="144" text-anchor="middle" font-size="9" fill="#999">06-18</text>
+<text x="225" y="22" text-anchor="middle" font-size="9" fill="#4a7adb">3.6k</text><rect x="260" y="31" width="58" height="97" fill="#4a7adb" rx="2"/>
+<text x="289" y="144" text-anchor="middle" font-size="9" fill="#999">06-25</text>
+<text x="289" y="28" text-anchor="middle" font-size="9" fill="#4a7adb">3.4k</text><rect x="324" y="22" width="58" height="106" fill="#4a7adb" rx="2"/>
+<text x="353" y="144" text-anchor="middle" font-size="9" fill="#999">07-02</text>
+<text x="353" y="19" text-anchor="middle" font-size="9" fill="#4a7adb">3.7k</text><rect x="388" y="25" width="58" height="103" fill="#4a7adb" rx="2"/>
+<text x="417" y="144" text-anchor="middle" font-size="9" fill="#999">07-09</text>
+<text x="417" y="22" text-anchor="middle" font-size="9" fill="#4a7adb">3.6k</text><rect x="452" y="21" width="58" height="107" fill="#4a7adb" rx="2"/>
+<text x="481" y="144" text-anchor="middle" font-size="9" fill="#999">07-16</text>
+<text x="481" y="18" text-anchor="middle" font-size="9" fill="#4a7adb">3.7k</text>
+  </svg>
+  <table style="margin-top:14px">
+    <thead><tr><th>週開始日</th><th>セッション数</th><th>CV数</th></tr></thead>
+    <tbody><tr>
+    <td>2026-05-28</td>
+    <td>3,583</td>
+    <td>4</td>
+  </tr><tr>
+    <td>2026-06-04</td>
+    <td>3,993</td>
+    <td>18</td>
+  </tr><tr>
+    <td>2026-06-11</td>
+    <td>4,018</td>
+    <td>0</td>
+  </tr><tr>
+    <td>2026-06-18</td>
+    <td>3,580</td>
+    <td>5</td>
+  </tr><tr>
+    <td>2026-06-25</td>
+    <td>3,353</td>
+    <td>3</td>
+  </tr><tr>
+    <td>2026-07-02</td>
+    <td>3,670</td>
+    <td>5</td>
+  </tr><tr>
+    <td>2026-07-09</td>
+    <td>3,565</td>
+    <td>3</td>
+  </tr><tr>
+    <td>2026-07-16</td>
+    <td>3,703</td>
+    <td>0</td>
+  </tr></tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h2>✅ 未完了タスク<span class="chip">1件</span></h2>
+  <table>
+        <thead><tr><th>種別</th><th>議事録日</th><th>アクション内容</th><th>担当</th><th>期限</th></tr></thead>
+        <tbody><tr>
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-06-29</td>
+      <td class="ac">来月の施策提案（ポラスの魅力向上施策＋CV改善施策の2軸）を準備する</td>
+      <td>GMO TECH（岩堀）</td>
+      <td><span class="">2026-07-23</span></td>
+    </tr></tbody>
+       </table>
+  
+  <div class="done-hd">完了済み（4件）</div>
+  <table>
+    <thead><tr><th>種別</th><th>議事録日</th><th>アクション内容</th><th>担当</th><th>期限</th></tr></thead>
+    <tbody><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-06-29</td>
+      <td class="ac">altタグのテキストに「直営責任」の表記が含まれているか確認し、含まれている場合は修正または報告する</td>
+      <td>SEO会社（guest01）</td>
+      <td>2026-07-23</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-06-29</td>
+      <td class="ac">完売物件ページの理想的なページ構成（エリア別完売ページ）の提案資料を作成する</td>
+      <td>SEO会社（guest01）</td>
+      <td>2026-07-23</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-06-29</td>
+      <td class="ac">次回定例会（7月23日木曜11時）のWeb会議URLを送付する</td>
+      <td>SEO会社（guest01）</td>
+      <td>近日中</td>
+    </tr><tr class="done">
+      <td><span class="badge b-action">アクション</span></td>
+      <td>2026-06-29</td>
+      <td class="ac">完売物件ページの処理方法（リダイレクト・URL削除等）についてシステム・事業部担当者に確認し、物件ページのみの制御が可能かを調査する</td>
+      <td>中央住宅/ポラス（guest02）</td>
+      <td>2026-07-23</td>
+    </tr></tbody>
+  </table>
+</div>
+
+</main>
+<footer>Generated by gijiroku reporter &nbsp;·&nbsp; 2026-07-23</footer>
+</body>
+</html>
