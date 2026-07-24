@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>エンバーポイント — タスクレポート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy-deep:#0F2A4A;--navy-mid:#1E3F63;--slate:#52708C;--paper:#F6F8FA;--card:#FFFFFF;--amber:#E8A33D;--amber-soft:#FCEFD9;--danger:#D64550;--danger-soft:#FBE7E8;--success:#3E9B6F;--success-soft:#E4F3EC;--border:#E2E8EF}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--paper);color:var(--navy-deep);font-size:14px;line-height:1.6}
+a{color:var(--navy-mid)}
+header{background:var(--navy-deep);color:#fff;padding:20px 32px}
+.hd-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:20px}
+.hd-text{flex:1;min-width:0}
+.hd-name{font-family:'Zen Kaku Gothic New',sans-serif;font-size:26px;font-weight:900;letter-spacing:.02em;line-height:1.2}
+.hd-date{font-size:11px;color:rgba(255,255,255,.55);margin-top:4px}
+.hd-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.hd-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 12px;border-radius:20px;font-size:12px;font-weight:700;white-space:nowrap}
+.hdb-open{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.hdb-nc{background:var(--amber-soft);color:#7A5200}
+.hdb-over{background:var(--danger-soft);color:var(--danger)}
+main{max-width:960px;margin:24px auto;padding:0 16px;display:flex;flex-direction:column;gap:20px}
+.card{background:var(--card);border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.07),0 4px 16px rgba(0,0,0,.05);padding:22px 24px}
+.card-title{font-family:'Zen Kaku Gothic New',sans-serif;font-size:13px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.sc-row{display:flex;gap:12px;flex-wrap:wrap}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;min-width:120px;flex:1}
+.sc-label{font-size:11px;color:var(--slate);font-weight:700;letter-spacing:.04em;margin-bottom:6px}
+.sc-value{font-size:13px;color:var(--navy-deep);font-weight:500;white-space:pre-wrap;line-height:1.4;font-variant-numeric:tabular-nums}
+.sc-accent{font-family:'Zen Kaku Gothic New',sans-serif;font-size:17px;font-weight:700}
+svg.chart{display:block;overflow:visible;width:100%;height:auto}
+.perf-legend{display:flex;gap:16px;margin-bottom:10px;font-size:12px;color:var(--slate)}
+.leg{display:flex;align-items:center;gap:5px}
+.leg-bar{width:14px;height:10px;background:var(--navy-mid);border-radius:2px;opacity:.85}
+.leg-dot{width:10px;height:10px;background:var(--amber);border-radius:50%;border:1.5px solid #fff;box-shadow:0 0 0 1px var(--amber)}
+table.pt{width:100%;border-collapse:collapse;font-size:13px;margin-top:14px}
+table.pt th{text-align:left;padding:7px 10px;color:var(--slate);font-size:11px;font-weight:700;letter-spacing:.04em;border-bottom:2px solid var(--border)}
+table.pt td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--navy-deep)}
+table.pt td.num{font-variant-numeric:tabular-nums;text-align:right;font-weight:500}
+table.pt td.amber{color:var(--amber);font-weight:700}
+.task-list{display:flex;flex-direction:column;gap:10px}
+.task-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.task-card.task-overdue{border-color:var(--danger);border-left-width:4px;background:#fffcfc}
+.task-card.task-nc{border-color:var(--amber);border-left-width:4px;background:#fffdf8}
+.task-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.task-badges{display:flex;gap:5px;flex-wrap:wrap}
+.tbadge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap}
+.t-action{background:#DDE8FF;color:#1D4080}
+.t-meet{background:#FFF3CD;color:#7A5200}
+.t-nc{background:var(--amber-soft);color:#7A5200}
+.task-due{font-size:12px;font-weight:700;white-space:nowrap;flex-shrink:0}
+.due-over{display:inline-flex;align-items:center;gap:5px;background:var(--danger-soft);color:var(--danger);padding:2px 10px;border-radius:4px}
+.due-soon{display:inline-flex;align-items:center;gap:5px;background:var(--amber-soft);color:#7A5200;padding:2px 10px;border-radius:4px}
+.due-ok{display:inline-flex;align-items:center;gap:5px;background:var(--success-soft);color:#2A7A56;padding:2px 10px;border-radius:4px}
+.due-none{display:inline-block;background:#F0F3F7;color:var(--slate);padding:2px 10px;border-radius:4px;font-size:12px}
+.due-delta{font-size:10px;opacity:.8}
+.task-action{font-size:14px;font-weight:500;color:var(--navy-deep);line-height:1.5;word-break:break-all}
+.task-meta{font-size:11px;color:var(--slate);margin-top:5px}
+.empty-tasks{text-align:center;padding:36px;color:var(--slate);font-size:13px;border:2px dashed var(--border);border-radius:10px}
+footer{text-align:center;padding:32px;font-size:11px;color:var(--slate)}
+@media(max-width:600px){.hd-inner{flex-direction:column;align-items:flex-start}.sc-row{flex-direction:column}.sc{min-width:unset;flex:unset;width:100%}.task-top{flex-direction:column}}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <div class="hd-text">
+      <div class="hd-name">エンバーポイント</div>
+      <div class="hd-date">最終更新: 2026-07-24</div>
+      <div class="hd-badges">
+        <span class="hd-badge hdb-open">未完了 5件</span>
+        <span class="hd-badge hdb-nc">⚠ 要確認 2件</span>
+        
+      </div>
+    </div>
+    <svg width="76" height="76" viewBox="0 0 76 76" aria-label="タスク内訳">
+  <circle cx="38" cy="38" r="27" fill="none" stroke="#2a4a6a" stroke-width="9" opacity="0.3"/>
+  <circle cx="38" cy="38" r="27" fill="none" stroke="#E8A33D" stroke-width="9" stroke-dasharray="67.86 101.79" stroke-dashoffset="0.00" transform="rotate(-90 38 38)"/><circle cx="38" cy="38" r="27" fill="none" stroke="#3E9B6F" stroke-width="9" stroke-dasharray="101.79 67.86" stroke-dashoffset="-67.86" transform="rotate(-90 38 38)"/>
+  <text x="38" y="34" text-anchor="middle" font-size="15" font-weight="700" fill="white" font-family="sans-serif">5</text>
+  <text x="38" y="49" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.65)" font-family="sans-serif">未完了</text>
+</svg>
+  </div>
+</header>
+<main>
+
+
+
+
+
+<div class="card">
+  <div class="card-title">未完了タスク（5件）</div>
+  <div class="task-list"><div class="task-card">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span></div>
+    <div class="task-due"><span class="due-soon">2026-07-27<span class="due-delta">3日以内</span></span></div>
+  </div>
+  <div class="task-action">提案資料（シミュレーション含む）を全て読み込む</div>
+  <div class="task-meta">👤 岩堀・濵田　📅 2026-07-24</div>
+</div><div class="task-card">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span></div>
+    <div class="task-due"><span class="due-soon">2026-07-27<span class="due-delta">3日以内</span></span></div>
+  </div>
+  <div class="task-action">サーチコンソール・GAを確認し現状を把握する</div>
+  <div class="task-meta">👤 岩堀・濵田　📅 2026-07-24</div>
+</div><div class="task-card">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span></div>
+    <div class="task-due"><span class="due-soon">2026-07-27<span class="due-delta">3日以内</span></span></div>
+  </div>
+  <div class="task-action">過去の商談内容（提案経緯）を見直す</div>
+  <div class="task-meta">👤 岩堀・濵田　📅 2026-07-24</div>
+</div><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-none">随時（キックオフ後）</span></div>
+  </div>
+  <div class="task-action">分析・方針資料をフィーネットワークスへ展開できるよう順次共有していく</div>
+  <div class="task-meta">👤 岩堀・濵田　📅 2026-07-24</div>
+</div><div class="task-card task-nc">
+  <div class="task-top">
+    <div class="task-badges"><span class="tbadge t-action">アクション</span><span class="tbadge t-nc">⚠ 要確認</span></div>
+    <div class="task-due"><span class="due-none">キックオフ後早期</span></div>
+  </div>
+  <div class="task-action">誰が何をするか（制作・更新・書類化）の役割分担を整理・確認する</div>
+  <div class="task-meta">👤 岩堀・濵田　📅 2026-07-24</div>
+</div></div>
+</div>
+
+</main>
+<footer>Generated by gijiroku reporter &nbsp;·&nbsp; 2026-07-24</footer>
+</body>
+</html>
